@@ -74,6 +74,7 @@ if __name__ == "__main__":
 
     # file name: <number_of_samples>_<query_type>_<number_of_timeseries>.csv
     agg_table.to_csv(f"{str(window_size)}_samples_{query_type}_{str(num_timeseries)}_ts.csv", index = False)
+    stats_df.to_csv(f"raw_{str(window_size)}_samples_{query_type}_{str(num_timeseries)}_ts.csv", index = False)
 
 '''
     avg_row = {"Monitoring_Targets": targets}
