@@ -40,13 +40,14 @@ if __name__ == "__main__":
     parser.add_argument(
         "--valuescale", type=int, help="range of report metric 0-valuescale"
     )
+    parser.add_argument("--batchsize", type=int, help="machine number (timeseries number) for each target to generate")
     args = parser.parse_args()
-    if args.port is None or args.valuescale is None or args.instancestart is None:
+    if args.port is None or args.valuescale is None or args.instancestart is None or args.batchsize is None:
         print("Missing argument --port, or --valuescale or --instancestart")
         sys.exit(0)
     print("Starting Server ...")
     metric_collector = CustomCollector(
-        batch_size, args.valuescale, args.instancestart
+        args.batchsize, args.valuescale, args.instancestart
     )
     REGISTRY.unregister(PROCESS_COLLECTOR)
     REGISTRY.unregister(PLATFORM_COLLECTOR)

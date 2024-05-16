@@ -1,3 +1,5 @@
+# Example usage: python ExportManager.py --config=num_samples_config.yml --targets=1 --timeseries=1
+
 import yaml
 import argparse
 import sys, os
@@ -34,6 +36,7 @@ def start_prometheus(config):
         [
             "/users/zz_y/prometheus/prometheus",
             f"--config.file={config}",
+            "--storage.local.path=/mydata",
         ]
     )
     processes.append(process)
@@ -49,6 +52,7 @@ def start_fake_exporters():
                 f"--port={str(port)}",
                 f"--valuescale=10000",
                 f"--instancestart={str(starting_val)}",
+                f"--batchsize={str(ts_batch_size)}",
             ]
         )
         processes.append(process)

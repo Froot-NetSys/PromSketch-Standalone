@@ -60,8 +60,12 @@ if __name__ == "__main__":
     targets = args.targets
     res = make_requests(wait_time)
     stats_df = pd.concat([stats_df, pd.DataFrame(res)], ignore_index=True)
-    avgs = stats_df.groupby("Sample_Size").mean()
-    avgs = avgs.loc[10000]
+    agg_table = stats_df.groupby("Sample_Size").agg(['mean', 'std'])
+
+    # file name: <number_of_samples>_<query_type>_<number_of_timeseries>.csv
+    agg_table.to_csv(f"{10}_samples_avg_10_ts.csv", index = False)
+
+'''
     avg_row = {"Monitoring_Targets": targets}
     for col in mapping.values():
         avg_row[col] = avgs[col]
@@ -69,3 +73,4 @@ if __name__ == "__main__":
     df_ts = pd.concat([df_ts, pd.DataFrame([avg_row])], ignore_index=True)
     stats_df.to_csv(f"targets_{targets}_data.csv", index=False)
     df_ts.to_csv("timeseries.csv", index=False)
+'''
