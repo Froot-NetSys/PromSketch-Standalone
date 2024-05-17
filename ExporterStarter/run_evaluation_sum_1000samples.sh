@@ -1,6 +1,0 @@
-python ExportManager.py --config=num_samples_config.yml --targets=1 --timeseries=1 --windowsize=1000 --querytype=sum --waiteval=10
-python ExportManager.py --config=num_samples_config.yml --targets=1 --timeseries=10 --windowsize=1000 --querytype=sum --waiteval=10
-python ExportManager.py --config=num_samples_config.yml --targets=1 --timeseries=100 --windowsize=1000 --querytype=sum --waiteval=20
-python ExportManager.py --config=num_samples_config.yml --targets=2 --timeseries=1000 --windowsize=1000 --querytype=sum --waiteval=20
-python ExportManager.py --config=num_samples_config.yml --targets=20 --timeseries=10000 --windowsize=1000 --querytype=sum --waiteval=30
-python ExportManager.py --config=num_samples_config.yml --targets=200 --timeseries=100000 --windowsize=1000 --querytype=sum --waiteval=40

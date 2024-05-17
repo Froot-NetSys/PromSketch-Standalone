@@ -2,4 +2,4 @@ groups:
   - name: fake_metric_1000_samples
     rules:
       - record: fake_metric_avg1000
-        expr: avg_over_time(fake_machine_metric[1000s])
+        expr: avg_over_time(fake_machine_metric[200s])
