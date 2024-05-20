@@ -1,0 +1,3 @@
+python ExportManager.py --config=num_samples_config.yml --targets=200 --timeseries=100000 --windowsize=10000 --querytype=sum --waiteval=150
+python ExportManager.py --config=num_samples_config.yml --targets=200 --timeseries=100000 --windowsize=10000 --querytype=avg --waiteval=150
+python ExportManager.py --config=num_samples_config.yml --targets=200 --timeseries=100000 --windowsize=10000 --querytype=quantile --waiteval=300

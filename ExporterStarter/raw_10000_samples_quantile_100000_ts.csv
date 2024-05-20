@@ -1,11 +1,14 @@
 Sample_Size,Quantile,Sum,Average
-10000.0,120.001307314,,
-10000.0,120.002850112,,
-10000.0,120.002167229,,
-10000.0,120.002885333,,
-10000.0,120.003193641,,
-10000.0,120.00293099,,
-10000.0,120.003191095,,
-10000.0,120.000466872,,
-10000.0,120.004203616,,
-10000.0,120.002016512,,
+10000.0,120.003122614,,
+10000.0,120.001033477,,
+10000.0,120.001668727,,
+10000.0,120.001534258,,
+10000.0,120.003118442,,
+10000.0,120.003205297,,
+10000.0,120.004590013,,
+10000.0,120.006362559,,
+10000.0,120.001977731,,
+10000.0,120.002554377,,
+
+
+zz_y@node0:/mydata/prometheus-eval-baseline/ExporterStarter$ ts=2024-05-20T13:59:05.709Z caller=group.go:487 level=warn name=fake_metric_quantile10000 index=0 component="rule manager" file=10000samples_quantile.yml group=fake_metric_10000_samples msg="Evaluating rule failed" rule="record: fake_metric_quantile10000\nexpr: quantile_over_time(0.5, fake_machine_metric[33m20s])\n" err="query timed out in expression evaluation"
