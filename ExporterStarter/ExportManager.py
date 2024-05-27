@@ -47,7 +47,7 @@ def start_prometheus(config, query_type, num_samples, num_ts):
     f = open(f"prometheus_latency_profile_{str(num_ts)}_ts_{query_type}_{num_samples}_samples.txt", "w")
     process = subprocess.Popen(
         [
-            "/mydata/prometheus-sketch-VLDB/prometheus-extended/prometheus/prometheus",
+            "/mydata/prometheus-sketch-VLDB/prometheus-sketches/prometheus",
             f"--config.file={config}",
         ],
         stdout=f
