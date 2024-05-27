@@ -43,14 +43,17 @@ def create_ports(num_targets):
         ports.append(port)
 
 
-def start_prometheus(config):
+def start_prometheus(config, query_type, num_samples, num_ts):
+    f = open(f"prometheus_latency_profile_{str(num_ts)}_ts_{query_type}_{num_samples}_samples.txt", "w")
     process = subprocess.Popen(
         [
             "/mydata/prometheus-sketch-VLDB/prometheus-extended/prometheus/prometheus",
             f"--config.file={config}",
-        ]
+        ],
+        stdout=f
     )
     processes.append(process)
+
 
 
 def start_fake_exporters(ts_batch_size):
@@ -112,7 +115,7 @@ if __name__ == "__main__":
     create_ports(num_targets)
     define_targets(config_file, window_size, query_type)
     
-    start_prometheus(config_file)
+    start_prometheus(config_file, query_type, window_size, args.timeseries)
     start_fake_exporters(ts_batch_size)
     time.sleep(window_size * 0.1 * 1.5)
 #    start_evaluation_tool(num_targets, window_size, query_type, args.timeseries, args.waiteval)
