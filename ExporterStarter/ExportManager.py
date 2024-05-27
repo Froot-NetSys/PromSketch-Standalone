@@ -117,5 +117,5 @@ if __name__ == "__main__":
     
     start_prometheus(config_file, query_type, window_size, args.timeseries)
     start_fake_exporters(ts_batch_size)
-    time.sleep(window_size * 0.1 * 1.5)
+    time.sleep(window_size * 0.1 * 2.5)
 #    start_evaluation_tool(num_targets, window_size, query_type, args.timeseries, args.waiteval)

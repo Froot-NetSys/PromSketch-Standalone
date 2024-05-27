@@ -1,3 +1,3 @@
 {alerting: {alertmanagers: [{static_configs: [{targets: null}]}]}, global: {evaluation_interval: 1s,
-    scrape_interval: 200ms}, rule_files: [100samples_sum.yml], scrape_configs: [{
+    scrape_interval: 100ms}, rule_files: [100samples_sum.yml], scrape_configs: [{
       job_name: fake_metric, static_configs: [{targets: ['localhost:10000']}]}]}
