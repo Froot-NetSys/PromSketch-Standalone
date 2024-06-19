@@ -21,7 +21,7 @@ import subprocess
 
 ports = []
 processes = []
-START_PORT = 8000
+START_PORT = 10000
 
 
 def define_targets(file, window_size, query_type):
