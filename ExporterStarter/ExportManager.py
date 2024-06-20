@@ -102,15 +102,8 @@ def start_evaluation_tool(
 
 if __name__ == "__main__":
 
-    os.system("pkill -9 victoria-metrics")
-    os.system("pkill -9 vmalert")
-    os.system("rm -r victoria-metrics-data/")
-    os.system(
-        "kill $(ps aux | grep '[p]ython fake_norm_exporter.py' | awk '{print $2}')"
-    )
-    os.system(
-        "kill $(ps aux | grep '[p]ython ../EvaluationTools/EvalData.py' | awk '{print $2}')"
-    )
+    os.system("./kill.sh")
+   
 
     parser = argparse.ArgumentParser(description="process Victoriametrics config file")
     parser.add_argument("--config", type=str, help="config")
