@@ -32,11 +32,11 @@ mapping = {
 def make_requests(wait_eval):
     res = []
     for i in range(10):
-        response = requests.get("http://localhost:8880/vmalert/api/v1/rules")
+        response = requests.get("http://localhost:9090/api/v1/rules")
         res_json = response.json()
         res_json = res_json["data"]["groups"]
         for group in res_json:
-            match = re.search(pattern, group["name"])
+            match = re.search(pattern, group["file"])
             samples = int(match[0])
             row = {"Sample_Size": samples}
             for rule in group["rules"]:
