@@ -54,6 +54,7 @@ def start_prometheus(config, query_type, num_samples, num_ts):
             f"--config.file={config}",
         ],
         stdout=f,
+        stderr=f,
     )
     processes.append(process)
 

@@ -1,0 +1,378 @@
+ts=2024-08-16T00:49:25.337Z caller=main.go:574 level=info msg="No time or size retention was set so using the default time retention" duration=15d
+ts=2024-08-16T00:49:25.337Z caller=main.go:618 level=info msg="Starting Prometheus Server" mode=server version="(version=2.52.0-rc.1, branch=main, revision=f46e1916c333f45d85bd143946047ac2df1671f1)"
+ts=2024-08-16T00:49:25.337Z caller=main.go:623 level=info build_context="(go=go1.22.5, platform=linux/amd64, user=zz_y@node3.c6420-6.softmeasure-pg0.clemson.cloudlab.us, date=20240816-00:42:41, tags=netgo,builtinassets,stringlabels)"
+ts=2024-08-16T00:49:25.337Z caller=main.go:624 level=info host_details="(Linux 5.4.0-164-generic #181-Ubuntu SMP Fri Sep 1 13:41:22 UTC 2023 x86_64 node3.c6420-6.softmeasure-pg0.clemson.cloudlab.us (none))"
+ts=2024-08-16T00:49:25.337Z caller=main.go:625 level=info fd_limits="(soft=1048576, hard=1048576)"
+ts=2024-08-16T00:49:25.337Z caller=main.go:626 level=info vm_limits="(soft=unlimited, hard=unlimited)"
+ts=2024-08-16T00:49:25.344Z caller=web.go:568 level=info component=web msg="Start listening for connections" address=0.0.0.0:9090
+ts=2024-08-16T00:49:25.345Z caller=main.go:1135 level=info msg="Starting TSDB ..."
+ts=2024-08-16T00:49:25.352Z caller=tls_config.go:313 level=info component=web msg="Listening on" address=[::]:9090
+ts=2024-08-16T00:49:25.352Z caller=tls_config.go:316 level=info component=web msg="TLS is disabled." http2=false address=[::]:9090
+ts=2024-08-16T00:49:25.353Z caller=head.go:616 level=info component=tsdb msg="Replaying on-disk memory mappable chunks if any"
+ts=2024-08-16T00:49:25.353Z caller=head.go:703 level=info component=tsdb msg="On-disk memory mappable chunks replay completed" duration=3.144µs
+ts=2024-08-16T00:49:25.353Z caller=head.go:711 level=info component=tsdb msg="Replaying WAL, this may take a while"
+ts=2024-08-16T00:49:25.358Z caller=head.go:783 level=info component=tsdb msg="WAL segment loaded" segment=0 maxSegment=0
+ts=2024-08-16T00:49:25.358Z caller=head.go:820 level=info component=tsdb msg="WAL replay completed" checkpoint_replay_duration=91.682µs wal_replay_duration=4.74724ms wbl_replay_duration=354ns chunk_snapshot_load_duration=0s mmap_chunk_replay_duration=3.144µs total_replay_duration=4.920029ms
+ts=2024-08-16T00:49:25.362Z caller=main.go:1156 level=info fs_type=EXT4_SUPER_MAGIC
+ts=2024-08-16T00:49:25.362Z caller=main.go:1159 level=info msg="TSDB started"
+ts=2024-08-16T00:49:25.362Z caller=main.go:1341 level=info msg="Loading configuration file" filename=num_samples_config.yml
+ts=2024-08-16T00:49:25.364Z caller=main.go:1378 level=info msg="Completed loading of configuration file" filename=num_samples_config.yml totalDuration=2.384898ms db_storage=2.08µs remote_storage=2.3µs web_handler=710ns query_engine=1.08µs scrape=1.248802ms scrape_sd=42.036µs notify=1.28µs notify_sd=1.02µs rules=347.045µs tracing=11.938µs
+ts=2024-08-16T00:49:25.364Z caller=main.go:1120 level=info msg="Server is ready to receive web requests."
+ts=2024-08-16T00:49:25.364Z caller=manager.go:171 level=info component="rule manager" msg="Starting rule manager..."
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-16T03:49:55.912Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723769370371 maxt=1723773600000 ulid=01J5CMW0M9B5FJJTSED2Y1YJ45 duration=25.534359553s ooo=false
+ts=2024-08-16T03:49:55.986Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=70.69358ms
+ts=2024-08-16T03:49:56.209Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=0 to_segment=49 mint=1723773600000
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-16T03:50:43.042Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=0 last=49 duration=46.833002697s
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-16T05:00:46.100Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723773600000 maxt=1723780800000 ulid=01J5CRX3KRG2FB9B9B2T9XS298 duration=45.595455275s ooo=false
+ts=2024-08-16T05:00:46.214Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=112.477481ms
+ts=2024-08-16T05:00:46.640Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=50 to_segment=86 mint=1723780800000
+ts=2024-08-16T05:01:22.980Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=50 last=86 duration=36.340389229s
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-16T07:00:43.869Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723780800000 maxt=1723788000000 ulid=01J5CZRTVRHD0TMSJQ99H01RWT duration=43.364691478s ooo=false
+ts=2024-08-16T07:00:43.973Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=101.32725ms
+ts=2024-08-16T07:00:44.436Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=87 to_segment=131 mint=1723788000000
+ts=2024-08-16T07:01:12.403Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=87 last=131 duration=27.96730368s
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-16T09:00:44.744Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723788000000 maxt=1723795200000 ulid=01J5D6MJ3Q63B15GAMS0PX6V61 duration=44.241090998s ooo=false
+ts=2024-08-16T09:00:44.849Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=101.13267ms
+ts=2024-08-16T09:00:45.268Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=132 to_segment=180 mint=1723795200000
+ts=2024-08-16T09:01:11.256Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=132 last=180 duration=25.987880338s
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-16T11:00:45.049Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723795200000 maxt=1723802400000 ulid=01J5DDG9BQ0SE0TFWZ2SBXJDEQ duration=44.546406076s ooo=false
+ts=2024-08-16T11:00:45.151Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=98.989412ms
+ts=2024-08-16T11:00:45.541Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=181 to_segment=229 mint=1723802400000
+ts=2024-08-16T11:01:09.770Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=181 last=229 duration=24.229630186s
+ts=2024-08-16T11:02:43.379Z caller=compact.go:514 level=info component=tsdb msg="compact blocks" count=3 mint=1723769370371 maxt=1723788000000 ulid=01J5DDJD0BBB4SYBYCNYD2SS7Z sources="[01J5CMW0M9B5FJJTSED2Y1YJ45 01J5CRX3KRG2FB9B9B2T9XS298 01J5CZRTVRHD0TMSJQ99H01RWT]" duration=1m33.608418388s
+ts=2024-08-16T11:02:44.718Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5CMW0M9B5FJJTSED2Y1YJ45
+ts=2024-08-16T11:02:45.140Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5CRX3KRG2FB9B9B2T9XS298
+ts=2024-08-16T11:02:45.558Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5CZRTVRHD0TMSJQ99H01RWT
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-16T13:00:46.406Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723802400000 maxt=1723809600000 ulid=01J5DMC0KRCY782A6NA543905J duration=45.90185348s ooo=false
+ts=2024-08-16T13:00:50.029Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=119.049763ms
+ts=2024-08-16T13:00:50.436Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=230 to_segment=279 mint=1723809600000
+ts=2024-08-16T13:01:14.444Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=230 last=279 duration=24.008205587s
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-16T15:00:45.990Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723809600000 maxt=1723816800000 ulid=01J5DV7QVRE55PTN259N7X1KK8 duration=45.486463793s ooo=false
+ts=2024-08-16T15:00:56.615Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=118.49999ms
+ts=2024-08-16T15:00:57.026Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=280 to_segment=329 mint=1723816800000
+ts=2024-08-16T15:01:22.093Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=280 last=329 duration=25.067082446s
+ts=2024-08-16T15:03:14.646Z caller=compact.go:514 level=info component=tsdb msg="compact blocks" count=3 mint=1723788000000 maxt=1723809600000 ulid=01J5DVA7HDAZF3Y2EJ661A0020 sources="[01J5D6MJ3Q63B15GAMS0PX6V61 01J5DDG9BQ0SE0TFWZ2SBXJDEQ 01J5DMC0KRCY782A6NA543905J]" duration=1m52.552774556s
+ts=2024-08-16T15:03:56.347Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5DMC0KRCY782A6NA543905J
+ts=2024-08-16T15:03:56.715Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5D6MJ3Q63B15GAMS0PX6V61
+ts=2024-08-16T15:03:57.089Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5DDG9BQ0SE0TFWZ2SBXJDEQ
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-16T17:00:46.742Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723816800000 maxt=1723824000000 ulid=01J5E23F3RFFEDJ02YFGKS9STK duration=46.238401232s ooo=false
+ts=2024-08-16T17:01:02.353Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=104.954143ms
+ts=2024-08-16T17:01:02.731Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=330 to_segment=379 mint=1723824000000
+ts=2024-08-16T17:01:27.951Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=330 last=379 duration=25.220177101s
+ts=2024-08-16T17:04:57.561Z caller=compact.go:514 level=info component=tsdb msg="compact blocks" count=2 mint=1723769370371 maxt=1723809600000 ulid=01J5E264GGAT20JXJREARGCB20 sources="[01J5DDJD0BBB4SYBYCNYD2SS7Z 01J5DVA7HDAZF3Y2EJ661A0020]" duration=3m29.608993742s
+ts=2024-08-16T17:05:03.746Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5DDJD0BBB4SYBYCNYD2SS7Z
+ts=2024-08-16T17:05:05.005Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5DVA7HDAZF3Y2EJ661A0020
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-16T19:00:47.197Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723824000000 maxt=1723831200000 ulid=01J5E8Z6BQ6SNXFSFCHAQ28SCH duration=46.693401569s ooo=false
+ts=2024-08-16T19:01:07.311Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=107.999847ms
+ts=2024-08-16T19:01:07.697Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=380 to_segment=429 mint=1723831200000
+ts=2024-08-16T19:01:32.375Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=380 last=429 duration=24.67748879s
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-16T21:00:48.369Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723831200000 maxt=1723838400000 ulid=01J5EFTXKRCDQBEFM4CMY4RRT1 duration=47.865149941s ooo=false
+ts=2024-08-16T21:01:14.481Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=104.535459ms
+ts=2024-08-16T21:01:14.867Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=430 to_segment=479 mint=1723838400000
+ts=2024-08-16T21:01:39.674Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=430 last=479 duration=24.807130097s
+ts=2024-08-16T21:03:33.414Z caller=compact.go:514 level=info component=tsdb msg="compact blocks" count=3 mint=1723809600000 maxt=1723831200000 ulid=01J5EFXYEVRE4VYG8XRNGHNFHZ sources="[01J5DV7QVRE55PTN259N7X1KK8 01J5E23F3RFFEDJ02YFGKS9STK 01J5E8Z6BQ6SNXFSFCHAQ28SCH]" duration=1m53.739951137s
+ts=2024-08-16T21:04:15.236Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5DV7QVRE55PTN259N7X1KK8
+ts=2024-08-16T21:04:15.601Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5E23F3RFFEDJ02YFGKS9STK
+ts=2024-08-16T21:04:15.992Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5E8Z6BQ6SNXFSFCHAQ28SCH
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-16T23:00:48.639Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723838400000 maxt=1723845600000 ulid=01J5EPPMVR16DFA73EDV90H4X6 duration=48.135085562s ooo=false
+ts=2024-08-16T23:01:45.761Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=111.917711ms
+ts=2024-08-16T23:01:46.138Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=480 to_segment=530 mint=1723845600000
+ts=2024-08-16T23:02:12.776Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=480 last=530 duration=26.638400273s
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-17T01:00:49.752Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723845600000 maxt=1723852800000 ulid=01J5EXJC3R8EDHJ5ZVT7CGCC7S duration=49.248189617s ooo=false
+ts=2024-08-17T01:01:29.375Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=108.87257ms
+ts=2024-08-17T01:01:29.757Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=531 to_segment=580 mint=1723852800000
+ts=2024-08-17T01:01:54.863Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=531 last=580 duration=25.106352315s
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-17T03:00:49.696Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723852800000 maxt=1723860000000 ulid=01J5F4E3BQBS2VPWBTPWBSJ3GG duration=49.19362119s ooo=false
+ts=2024-08-17T03:00:54.814Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=114.253244ms
+ts=2024-08-17T03:00:55.212Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=581 to_segment=630 mint=1723860000000
+ts=2024-08-17T03:01:20.670Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=581 last=630 duration=25.458306475s
+ts=2024-08-17T03:03:21.816Z caller=compact.go:514 level=info component=tsdb msg="compact blocks" count=3 mint=1723831200000 maxt=1723852800000 ulid=01J5F4GHMY4NEV8BDBB05YV9PM sources="[01J5EFTXKRCDQBEFM4CMY4RRT1 01J5EPPMVR16DFA73EDV90H4X6 01J5EXJC3R8EDHJ5ZVT7CGCC7S]" duration=2m1.146185075s
+ts=2024-08-17T03:03:30.135Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5EFTXKRCDQBEFM4CMY4RRT1
+ts=2024-08-17T03:03:30.561Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5EPPMVR16DFA73EDV90H4X6
+ts=2024-08-17T03:03:30.935Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5EXJC3R8EDHJ5ZVT7CGCC7S
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-17T05:00:51.177Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723860000000 maxt=1723867200000 ulid=01J5FB9TKRBE1F6WAPNCW1KTNT duration=50.673618698s ooo=false
+ts=2024-08-17T05:01:13.309Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=127.76688ms
+ts=2024-08-17T05:01:13.699Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=631 to_segment=681 mint=1723867200000
+ts=2024-08-17T05:01:40.568Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=631 last=681 duration=26.869691589s
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-17T07:00:50.908Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723867200000 maxt=1723874400000 ulid=01J5FJ5HVRBWF39E9DQZW4KSQA duration=50.40361315s ooo=false
+ts=2024-08-17T07:01:26.037Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=121.432363ms
+ts=2024-08-17T07:01:26.431Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=682 to_segment=731 mint=1723874400000
+ts=2024-08-17T07:01:51.451Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=682 last=731 duration=25.020613815s
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-17T09:00:51.391Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723874400000 maxt=1723881600000 ulid=01J5FS193R9MB46DQE4AYSXJYR duration=50.887817344s ooo=false
+ts=2024-08-17T09:01:50.517Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=114.015524ms
+ts=2024-08-17T09:01:50.941Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=732 to_segment=782 mint=1723881600000
+ts=2024-08-17T09:02:18.447Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=732 last=782 duration=27.506480895s
+ts=2024-08-17T09:04:24.459Z caller=compact.go:514 level=info component=tsdb msg="compact blocks" count=3 mint=1723852800000 maxt=1723874400000 ulid=01J5FS5FTF028ABBPKDXD8178Y sources="[01J5F4E3BQBS2VPWBTPWBSJ3GG 01J5FB9TKRBE1F6WAPNCW1KTNT 01J5FJ5HVRBWF39E9DQZW4KSQA]" duration=2m6.01212147s
+ts=2024-08-17T09:04:35.714Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5F4E3BQBS2VPWBTPWBSJ3GG
+ts=2024-08-17T09:04:36.128Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5FB9TKRBE1F6WAPNCW1KTNT
+ts=2024-08-17T09:04:36.518Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5FJ5HVRBWF39E9DQZW4KSQA
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-17T09:11:08.093Z caller=compact.go:514 level=info component=tsdb msg="compact blocks" count=3 mint=1723809600000 maxt=1723874400000 ulid=01J5FS9PN76MBBESRBNA7X68KB sources="[01J5EFXYEVRE4VYG8XRNGHNFHZ 01J5F4GHMY4NEV8BDBB05YV9PM 01J5FS5FTF028ABBPKDXD8178Y]" duration=6m31.574868611s
+ts=2024-08-17T09:11:31.040Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5F4GHMY4NEV8BDBB05YV9PM
+ts=2024-08-17T09:11:32.325Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5EFXYEVRE4VYG8XRNGHNFHZ
+ts=2024-08-17T09:11:33.668Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5FS5FTF028ABBPKDXD8178Y
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-17T11:00:54.342Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723881600000 maxt=1723888800000 ulid=01J5FZX0BR7X094VVEH6XYSHE2 duration=53.837987972s ooo=false
+ts=2024-08-17T11:01:21.949Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=101.849792ms
+ts=2024-08-17T11:01:22.392Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=783 to_segment=832 mint=1723888800000
+ts=2024-08-17T11:01:47.407Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=783 last=832 duration=25.015527651s
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-17T13:00:56.428Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723888800000 maxt=1723896000000 ulid=01J5G6RQKQ0Y6DDXDZC0TDWTXX duration=55.924574065s ooo=false
+ts=2024-08-17T13:01:04.042Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=109.292178ms
+ts=2024-08-17T13:01:04.503Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=833 to_segment=882 mint=1723896000000
+ts=2024-08-17T13:01:29.312Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=833 last=882 duration=24.80939978s
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-17T15:00:40.521Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723896000000 maxt=1723903200000 ulid=01J5GDMEVR9HEGDH0B77NQS5V1 duration=40.016836605s ooo=false
+ts=2024-08-17T15:01:13.134Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=103.314899ms
+ts=2024-08-17T15:01:13.603Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=883 to_segment=932 mint=1723903200000
+ts=2024-08-17T15:01:38.719Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=883 last=932 duration=25.116557693s
+ts=2024-08-17T15:03:03.496Z caller=compact.go:514 level=info component=tsdb msg="compact blocks" count=3 mint=1723874400000 maxt=1723896000000 ulid=01J5GDQES0ZZP9D5R087PTWT50 sources="[01J5FS193R9MB46DQE4AYSXJYR 01J5FZX0BR7X094VVEH6XYSHE2 01J5G6RQKQ0Y6DDXDZC0TDWTXX]" duration=1m24.776702802s
+ts=2024-08-17T15:03:59.616Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5FS193R9MB46DQE4AYSXJYR
+ts=2024-08-17T15:04:00.034Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5FZX0BR7X094VVEH6XYSHE2
+ts=2024-08-17T15:04:00.453Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5G6RQKQ0Y6DDXDZC0TDWTXX
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-17T17:00:39.339Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723903200000 maxt=1723910400000 ulid=01J5GMG63RDQ1114HSDX2PXCVX duration=38.834932734s ooo=false
+ts=2024-08-17T17:01:53.972Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=122.450517ms
+ts=2024-08-17T17:01:54.403Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=933 to_segment=983 mint=1723910400000
+ts=2024-08-17T17:02:21.264Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=933 last=983 duration=26.86116598s
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-17T19:00:37.316Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723910400000 maxt=1723917600000 ulid=01J5GVBXBRWXW6ATEC462KDBWA duration=36.811931722s ooo=false
+ts=2024-08-17T19:00:51.430Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=105.110207ms
+ts=2024-08-17T19:00:51.851Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=984 to_segment=1033 mint=1723917600000
+ts=2024-08-17T19:01:16.848Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=984 last=1033 duration=24.997360104s
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-17T21:00:38.665Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1723917600000 maxt=1723924800000 ulid=01J5H27MKQ4WGZX63KFMDSM2CJ duration=38.161783572s ooo=false
+ts=2024-08-17T21:01:27.800Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=123.77962ms
+ts=2024-08-17T21:01:28.263Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=1034 to_segment=1084 mint=1723924800000
+ts=2024-08-17T21:01:54.087Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=1034 last=1084 duration=25.824480409s
+ts=2024-08-17T21:03:21.264Z caller=compact.go:514 level=info component=tsdb msg="compact blocks" count=3 mint=1723896000000 maxt=1723917600000 ulid=01J5H2B3H7FYSHQG731YW2BS1D sources="[01J5GDMEVR9HEGDH0B77NQS5V1 01J5GMG63RDQ1114HSDX2PXCVX 01J5GVBXBRWXW6ATEC462KDBWA]" duration=1m27.17705052s
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
+ts=2024-08-17T21:04:12.862Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5GMG63RDQ1114HSDX2PXCVX
+ts=2024-08-17T21:04:13.290Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5GDMEVR9HEGDH0B77NQS5V1
+ts=2024-08-17T21:04:13.760Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J5GVBXBRWXW6ATEC462KDBWA
+[promql] read from storage time= 0 (s)
+[promql] call time= 0 (s)
