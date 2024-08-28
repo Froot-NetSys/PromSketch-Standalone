@@ -1,0 +1,25 @@
+groups:
+ - name: fake_metric_distinct1000000_concurrent
+   rules:
+     - record: fake_metric_distinct1000000
+       expr: distinct_over_time(fake_machine_metric[100000s])
+ - name: fake_metric_distinct100000_concurrent
+   rules:
+     - record: fake_metric_distinct100000
+       expr: distinct_over_time(fake_machine_metric[10000s])
+ - name: fake_metric_distinct10000_concurrent
+   rules: 
+     - record: fake_metric_distinct10000
+       expr: distinct_over_time(fake_machine_metric[1000s])
+ - name: fake_metric_entropy1000000_concurrent
+   rules:
+     - record: fake_metric_entropy1000000
+       expr: entropy_over_time(fake_machine_metric[100000s])
+ - name: fake_metric_entropy100000_concurrent
+   rules:
+     - record: fake_metric_distinct100000
+       expr: entropy_over_time(fake_machine_metric[10000s])
+ - name: fake_metric_entropy10000_concurrent
+   rules: 
+     - record: fake_metric_entropy10000
+       expr: entropy_over_time(fake_machine_metric[1000s])
