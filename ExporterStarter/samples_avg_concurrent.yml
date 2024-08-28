@@ -1,0 +1,14 @@
+groups:
+  - name: fake_metric_avg1000000_concurrent
+    rules:
+      - record: fake_metric_avg1000000
+        expr: avg_over_time(fake_machine_metric[100000s])
+  - name: fake_metric_avg100000_concurrent
+    rules:
+      - record: fake_metric_avg100000
+        expr: avg_over_time(fake_machine_metric[10000s])
+  - name: fake_metric_avg10000_concurrent
+    rules:  
+       - record: fake_metric_avg10000
+         expr: avg_over_time(fake_machine_metric[1000s])
+
