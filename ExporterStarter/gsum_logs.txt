@@ -1,0 +1,2 @@
+--windowsize=10 --querytype=gsum
+started evaluation tool!

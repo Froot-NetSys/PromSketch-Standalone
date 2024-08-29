@@ -1,21 +1,310 @@
-ts=2024-08-28T02:05:53.732Z caller=main.go:573 level=info msg="No time or size retention was set so using the default time retention" duration=15d
-ts=2024-08-28T02:05:53.733Z caller=main.go:617 level=info msg="Starting Prometheus Server" mode=server version="(version=2.52.0-rc.1, branch=main, revision=fc5b02e4ad0fde025368afd3c05765d6b5603778)"
-ts=2024-08-28T02:05:53.733Z caller=main.go:622 level=info build_context="(go=go1.22.5, platform=linux/amd64, user=zz_y@node1.c6420-3.softmeasure-pg0.clemson.cloudlab.us, date=20240828-01:58:04, tags=netgo,builtinassets,stringlabels)"
-ts=2024-08-28T02:05:53.733Z caller=main.go:623 level=info host_details="(Linux 5.4.0-164-generic #181-Ubuntu SMP Fri Sep 1 13:41:22 UTC 2023 x86_64 node1.c6420-3.softmeasure-pg0.clemson.cloudlab.us (none))"
-ts=2024-08-28T02:05:53.733Z caller=main.go:624 level=info fd_limits="(soft=1048576, hard=1048576)"
-ts=2024-08-28T02:05:53.733Z caller=main.go:625 level=info vm_limits="(soft=unlimited, hard=unlimited)"
-ts=2024-08-28T02:05:53.736Z caller=web.go:568 level=info component=web msg="Start listening for connections" address=0.0.0.0:9090
-ts=2024-08-28T02:05:53.737Z caller=main.go:1129 level=info msg="Starting TSDB ..."
-ts=2024-08-28T02:05:53.740Z caller=tls_config.go:313 level=info component=web msg="Listening on" address=[::]:9090
-ts=2024-08-28T02:05:53.740Z caller=tls_config.go:316 level=info component=web msg="TLS is disabled." http2=false address=[::]:9090
-ts=2024-08-28T02:05:53.747Z caller=head.go:616 level=info component=tsdb msg="Replaying on-disk memory mappable chunks if any"
-ts=2024-08-28T02:05:53.747Z caller=head.go:703 level=info component=tsdb msg="On-disk memory mappable chunks replay completed" duration=2.382µs
-ts=2024-08-28T02:05:53.747Z caller=head.go:711 level=info component=tsdb msg="Replaying WAL, this may take a while"
-ts=2024-08-28T02:05:53.752Z caller=head.go:783 level=info component=tsdb msg="WAL segment loaded" segment=0 maxSegment=0
-ts=2024-08-28T02:05:53.752Z caller=head.go:820 level=info component=tsdb msg="WAL replay completed" checkpoint_replay_duration=82.885µs wal_replay_duration=5.079797ms wbl_replay_duration=295ns chunk_snapshot_load_duration=0s mmap_chunk_replay_duration=2.382µs total_replay_duration=5.230855ms
-ts=2024-08-28T02:05:53.759Z caller=main.go:1150 level=info fs_type=EXT4_SUPER_MAGIC
-ts=2024-08-28T02:05:53.759Z caller=main.go:1153 level=info msg="TSDB started"
-ts=2024-08-28T02:05:53.759Z caller=main.go:1335 level=info msg="Loading configuration file" filename=num_samples_config.yml
-ts=2024-08-28T02:05:53.762Z caller=main.go:1372 level=info msg="Completed loading of configuration file" filename=num_samples_config.yml totalDuration=2.934156ms db_storage=2.122µs remote_storage=2.456µs web_handler=928ns query_engine=1.464µs scrape=1.497716ms scrape_sd=31.979µs notify=1.435µs notify_sd=970ns rules=592.111µs tracing=7.451µs
-ts=2024-08-28T02:05:53.762Z caller=main.go:1114 level=info msg="Server is ready to receive web requests."
-ts=2024-08-28T02:05:53.762Z caller=manager.go:170 level=info component="rule manager" msg="Starting rule manager..."
+ts=2024-08-28T02:37:57.179Z caller=main.go:573 level=info msg="No time or size retention was set so using the default time retention" duration=15d
+ts=2024-08-28T02:37:57.179Z caller=main.go:617 level=info msg="Starting Prometheus Server" mode=server version="(version=2.52.0-rc.1, branch=main, revision=fc5b02e4ad0fde025368afd3c05765d6b5603778)"
+ts=2024-08-28T02:37:57.179Z caller=main.go:622 level=info build_context="(go=go1.22.5, platform=linux/amd64, user=zz_y@node1.c6420-3.softmeasure-pg0.clemson.cloudlab.us, date=20240828-01:58:04, tags=netgo,builtinassets,stringlabels)"
+ts=2024-08-28T02:37:57.179Z caller=main.go:623 level=info host_details="(Linux 5.4.0-164-generic #181-Ubuntu SMP Fri Sep 1 13:41:22 UTC 2023 x86_64 node1.c6420-3.softmeasure-pg0.clemson.cloudlab.us (none))"
+ts=2024-08-28T02:37:57.179Z caller=main.go:624 level=info fd_limits="(soft=1048576, hard=1048576)"
+ts=2024-08-28T02:37:57.179Z caller=main.go:625 level=info vm_limits="(soft=unlimited, hard=unlimited)"
+ts=2024-08-28T02:37:57.183Z caller=web.go:568 level=info component=web msg="Start listening for connections" address=0.0.0.0:9090
+ts=2024-08-28T02:37:57.184Z caller=main.go:1129 level=info msg="Starting TSDB ..."
+ts=2024-08-28T02:37:57.187Z caller=tls_config.go:313 level=info component=web msg="Listening on" address=[::]:9090
+ts=2024-08-28T02:37:57.187Z caller=tls_config.go:316 level=info component=web msg="TLS is disabled." http2=false address=[::]:9090
+ts=2024-08-28T02:37:57.189Z caller=head.go:616 level=info component=tsdb msg="Replaying on-disk memory mappable chunks if any"
+ts=2024-08-28T02:37:57.189Z caller=head.go:703 level=info component=tsdb msg="On-disk memory mappable chunks replay completed" duration=1.315µs
+ts=2024-08-28T02:37:57.189Z caller=head.go:711 level=info component=tsdb msg="Replaying WAL, this may take a while"
+ts=2024-08-28T02:37:57.194Z caller=head.go:783 level=info component=tsdb msg="WAL segment loaded" segment=0 maxSegment=0
+ts=2024-08-28T02:37:57.194Z caller=head.go:820 level=info component=tsdb msg="WAL replay completed" checkpoint_replay_duration=30.004µs wal_replay_duration=5.037028ms wbl_replay_duration=227ns chunk_snapshot_load_duration=0s mmap_chunk_replay_duration=1.315µs total_replay_duration=5.101894ms
+ts=2024-08-28T02:37:57.197Z caller=main.go:1150 level=info fs_type=EXT4_SUPER_MAGIC
+ts=2024-08-28T02:37:57.197Z caller=main.go:1153 level=info msg="TSDB started"
+ts=2024-08-28T02:37:57.197Z caller=main.go:1335 level=info msg="Loading configuration file" filename=num_samples_config.yml
+ts=2024-08-28T02:37:57.199Z caller=main.go:1372 level=info msg="Completed loading of configuration file" filename=num_samples_config.yml totalDuration=2.065807ms db_storage=1.318µs remote_storage=1.294µs web_handler=595ns query_engine=1.21µs scrape=1.053165ms scrape_sd=36.299µs notify=1.601µs notify_sd=1.197µs rules=492.329µs tracing=7.345µs
+ts=2024-08-28T02:37:57.199Z caller=main.go:1114 level=info msg="Server is ready to receive web requests."
+ts=2024-08-28T02:37:57.199Z caller=manager.go:170 level=info component="rule manager" msg="Starting rule manager..."
+[promql] read from storage time= 1.732710021000004 (s)
+[promql] call time= 1.618363982999996 (s)
+[promql] read from storage time= 3.0721964489999873 (s)
+[promql] call time= 2.990243352000002 (s)
+[promql] read from storage time= 5.060334318999979 (s)
+[promql] call time= 6.3885293039999995 (s)
+[promql] read from storage time= 6.364712639999985 (s)
+[promql] call time= 9.172598790999965 (s)
+[promql] read from storage time= 7.598037911000021 (s)
+[promql] call time= 6.471176114999984 (s)
+[promql] read from storage time= 9.68967688600002 (s)
+[promql] call time= 7.5559682509999995 (s)
+[promql] read from storage time= 11.223183346000008 (s)
+[promql] call time= 13.29259296900006 (s)
+[promql] read from storage time= 7.737244543000021 (s)
+[promql] call time= 6.547527753000003 (s)
+[promql] read from storage time= 14.515143478999999 (s)
+[promql] call time= 11.526546835999945 (s)
+[promql] read from storage time= 16.11704195299989 (s)
+[promql] call time= 20.682552267999963 (s)
+[promql] read from storage time= 8.342063720999969 (s)
+[promql] call time= 6.696884429000027 (s)
+[promql] read from storage time= 8.42633727400001 (s)
+[promql] call time= 10.439772095999938 (s)
+[promql] read from storage time= 8.418357964000002 (s)
+[promql] call time= 6.664069580999995 (s)
+[promql] read from storage time= 22.617120357999966 (s)
+[promql] call time= 25.818555673000024 (s)
+[promql] read from storage time= 8.235332593000036 (s)
+[promql] call time= 10.324734805000057 (s)
+[promql] read from storage time= 25.808969627999968 (s)
+[promql] call time= 17.647126827999994 (s)
+[promql] read from storage time= 27.554703299000067 (s)
+[promql] call time= 29.515268677000073 (s)
+[promql] read from storage time= 8.407837378000032 (s)
+[promql] call time= 10.52830984000005 (s)
+[promql] read from storage time= 31.285133304999945 (s)
+[promql] call time= 20.10860403999997 (s)
+ts=2024-08-28T03:43:47.294Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+ts=2024-08-28T03:44:54.290Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 8.544580058000012 (s)
+[promql] call time= 10.286672395999979 (s)
+ts=2024-08-28T03:46:01.902Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+ts=2024-08-28T03:47:11.880Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+ts=2024-08-28T03:48:21.339Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 34.23999215000011 (s)
+[promql] call time= 21.79713510099992 (s)
+ts=2024-08-28T03:49:31.066Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+ts=2024-08-28T03:51:56.605Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 8.611046974999992 (s)
+[promql] call time= 10.36512702599998 (s)
+ts=2024-08-28T03:53:12.815Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+ts=2024-08-28T03:54:32.544Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 38.14618899600043 (s)
+[promql] call time= 28.03690349499999 (s)
+ts=2024-08-28T03:57:20.132Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+ts=2024-08-28T03:58:44.211Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 40.00110461700003 (s)
+[promql] call time= 28.868160559999975 (s)
+[promql] read from storage time= 41.80951675399987 (s)
+[promql] call time= 46.60160457900003 (s)
+ts=2024-08-28T04:04:38.427Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 44.55730452399988 (s)
+[promql] call time= 30.892838887999996 (s)
+ts=2024-08-28T04:10:55.170Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 46.72770125399993 (s)
+[promql] call time= 31.812068564000015 (s)
+[promql] read from storage time= 8.829743700999996 (s)
+[promql] call time= 6.623229631999964 (s)
+ts=2024-08-28T04:17:35.522Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+ts=2024-08-28T04:21:04.118Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 51.16695241800014 (s)
+[promql] call time= 33.81365246299993 (s)
+[promql] read from storage time= 8.905338112999996 (s)
+[promql] call time= 6.534665092999991 (s)
+[promql] read from storage time= 55.46287940000006 (s)
+[promql] call time= 55.96729480900012 (s)
+ts=2024-08-28T04:34:10.472Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 8.658744165000043 (s)
+[promql] call time= 6.361389514000021 (s)
+ts=2024-08-28T04:36:09.417Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 60.39325792599987 (s)
+[promql] call time= 59.51613742599984 (s)
+ts=2024-08-28T04:44:26.148Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 9.154571340000007 (s)
+[promql] call time= 10.416107324999984 (s)
+[promql] read from storage time= 9.072079873000003 (s)
+[promql] call time= 10.42418595000002 (s)
+ts=2024-08-28T04:53:17.223Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 68.92068301699948 (s)
+[promql] call time= 40.92207018500005 (s)
+ts=2024-08-28T04:55:34.936Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 9.617872681000012 (s)
+[promql] call time= 6.560731184999954 (s)
+[promql] read from storage time= 74.95933579900019 (s)
+[promql] call time= 69.51685186200001 (s)
+[promql] read from storage time= 9.712853212000033 (s)
+[promql] call time= 6.562032129000017 (s)
+ts=2024-08-28T05:15:25.144Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 9.183038472999986 (s)
+[promql] call time= 10.289141391999946 (s)
+ts=2024-08-28T05:18:04.084Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 9.338802353000016 (s)
+[promql] call time= 6.5117469209999985 (s)
+[promql] read from storage time= 9.19806670299997 (s)
+[promql] call time= 10.309753788999961 (s)
+ts=2024-08-28T05:29:07.370Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 89.04039980599936 (s)
+[promql] call time= 49.78520040299985 (s)
+[promql] read from storage time= 87.78278355799965 (s)
+[promql] call time= 48.626909904 (s)
+ts=2024-08-28T05:38:28.037Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1724812682207 maxt=1724817600000 ulid=01J6BQVBV2WGKK4T1NGE44YJS6 duration=25.827478383s ooo=false
+ts=2024-08-28T05:40:31.090Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+ts=2024-08-28T05:41:02.213Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=139.493124ms
+ts=2024-08-28T05:41:02.501Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=0 to_segment=49 mint=1724817600000
+ts=2024-08-28T05:41:42.236Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=0 last=49 duration=39.735900626s
+[promql] read from storage time= 10.275930350000062 (s)
+[promql] call time= 6.6391570880000135 (s)
+[promql] read from storage time= 9.577684824999988 (s)
+[promql] call time= 6.616271542999987 (s)
+ts=2024-08-28T05:55:18.269Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 9.504550300999956 (s)
+[promql] call time= 10.48910666400003 (s)
+ts=2024-08-28T05:58:15.870Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 9.362755132000023 (s)
+[promql] call time= 10.233692468999987 (s)
+[promql] read from storage time= 9.843613060000008 (s)
+[promql] call time= 10.29867947499997 (s)
+ts=2024-08-28T06:10:09.822Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+ts=2024-08-28T06:13:08.259Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 9.329980340999985 (s)
+[promql] call time= 10.426936872000006 (s)
+[promql] read from storage time= 9.991507875000023 (s)
+[promql] call time= 10.260935933000006 (s)
+ts=2024-08-28T06:25:06.745Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 8.834399100000013 (s)
+[promql] call time= 10.29136974299994 (s)
+ts=2024-08-28T06:28:07.000Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 133.20471345599972 (s)
+[promql] call time= 73.07852191300015 (s)
+[promql] read from storage time= 9.59999396199994 (s)
+[promql] call time= 6.568260106999985 (s)
+ts=2024-08-28T06:40:08.978Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+ts=2024-08-28T06:43:11.058Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 99.3165503360001 (s)
+[promql] call time= 48.44363332599999 (s)
+[promql] read from storage time= 11.498765852999982 (s)
+[promql] call time= 10.383778911000004 (s)
+ts=2024-08-28T06:52:06.333Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+ts=2024-08-28T06:54:54.816Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 10.057267684000065 (s)
+[promql] call time= 10.410890859999986 (s)
+ts=2024-08-28T07:00:39.414Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1724817600000 maxt=1724824800000 ulid=01J6BWHEVS088VNDQFWWMD565Z duration=38.90904131s ooo=false
+[promql] read from storage time= 9.895525023000017 (s)
+[promql] call time= 6.546925577000013 (s)
+ts=2024-08-28T07:03:30.601Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=142.358978ms
+ts=2024-08-28T07:03:31.012Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=50 to_segment=89 mint=1724824800000
+ts=2024-08-28T07:04:06.421Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=50 last=89 duration=35.409644467s
+ts=2024-08-28T07:06:27.955Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 91.02152171200026 (s)
+[promql] call time= 77.82624795699985 (s)
+[promql] read from storage time= 11.320808529999965 (s)
+[promql] call time= 6.628538143000007 (s)
+ts=2024-08-28T07:20:59.640Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 10.566396126000006 (s)
+[promql] call time= 10.310998092999988 (s)
+[promql] read from storage time= 9.498906434999947 (s)
+[promql] call time= 10.210101911000024 (s)
+[promql] read from storage time= 160.5803068379995 (s)
+[promql] call time= 86.52385834300007 (s)
+[promql] read from storage time= 164.48655773499956 (s)
+[promql] call time= 143.4423800190005 (s)
+[promql] read from storage time= 10.727269487999985 (s)
+[promql] call time= 6.577159050999994 (s)
+ts=2024-08-28T07:47:25.897Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+ts=2024-08-28T07:50:21.906Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 9.720097343000006 (s)
+[promql] call time= 6.583108315999968 (s)
+[promql] read from storage time= 94.26594709200005 (s)
+[promql] call time= 48.33092248700005 (s)
+ts=2024-08-28T08:02:13.465Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+ts=2024-08-28T08:05:11.335Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 181.83784870199977 (s)
+[promql] call time= 93.87712599700009 (s)
+[promql] read from storage time= 11.064985098000044 (s)
+[promql] call time= 6.59654482600001 (s)
+ts=2024-08-28T08:17:09.319Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 12.569461234999983 (s)
+[promql] call time= 6.514825719000024 (s)
+ts=2024-08-28T08:20:09.260Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 194.4829538850007 (s)
+[promql] call time= 98.2513854079998 (s)
+[promql] read from storage time= 13.885166790999993 (s)
+[promql] call time= 10.342197500000005 (s)
+ts=2024-08-28T08:32:13.388Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+ts=2024-08-28T08:35:14.302Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 13.824951139999945 (s)
+[promql] call time= 6.532328396000004 (s)
+[promql] read from storage time= 15.149561855000005 (s)
+[promql] call time= 10.406293195000003 (s)
+ts=2024-08-28T08:47:25.516Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+ts=2024-08-28T08:50:27.545Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 210.0509595299997 (s)
+[promql] call time= 172.83471089699935 (s)
+[promql] read from storage time= 15.013362533000008 (s)
+[promql] call time= 10.456129218999951 (s)
+ts=2024-08-28T08:58:58.064Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+ts=2024-08-28T09:00:37.250Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1724824800000 maxt=1724832000000 ulid=01J6C3D5M4WGR3VF29ZD2W311E duration=37.246015394s ooo=false
+ts=2024-08-28T09:01:48.251Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 14.446718338000013 (s)
+[promql] call time= 6.616084464999999 (s)
+ts=2024-08-28T09:05:12.999Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=181.33538ms
+ts=2024-08-28T09:05:13.485Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=90 to_segment=136 mint=1724832000000
+ts=2024-08-28T09:05:43.686Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=90 last=136 duration=30.201549318s
+[promql] read from storage time= 93.38185344099996 (s)
+[promql] call time= 48.53535572099971 (s)
+ts=2024-08-28T09:13:36.513Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 12.379057636999969 (s)
+[promql] call time= 6.431421458000016 (s)
+[promql] read from storage time= 12.697107052000016 (s)
+[promql] call time= 10.474669722000016 (s)
+ts=2024-08-28T09:28:15.086Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 92.94777954699971 (s)
+[promql] call time= 48.40262705299982 (s)
+ts=2024-08-28T09:31:10.773Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 94.00794560899935 (s)
+[promql] call time= 78.53715379699987 (s)
+ts=2024-08-28T09:42:58.098Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 13.380357485999983 (s)
+[promql] call time= 10.323523334999972 (s)
+[promql] read from storage time= 9.21960552799999 (s)
+[promql] call time= 10.17333186000002 (s)
+[promql] read from storage time= 8.701071691000028 (s)
+[promql] call time= 6.50634768100001 (s)
+ts=2024-08-28T09:57:49.694Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 9.266828604 (s)
+[promql] call time= 10.350542127999965 (s)
+[promql] read from storage time= 99.04939009999991 (s)
+[promql] call time= 48.699136272000054 (s)
+ts=2024-08-28T10:12:45.359Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 13.811087505000001 (s)
+[promql] call time= 6.584588473999993 (s)
+[promql] read from storage time= 12.328991070000033 (s)
+[promql] call time= 10.439245180999999 (s)
+ts=2024-08-28T10:27:54.517Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 11.061464537000035 (s)
+[promql] call time= 10.606096781000055 (s)
+[promql] read from storage time= 9.493814721000003 (s)
+[promql] call time= 6.615479711000019 (s)
+[promql] read from storage time= 14.582957224999955 (s)
+[promql] call time= 10.312806395000035 (s)
+ts=2024-08-28T10:43:11.355Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 16.569825376000065 (s)
+[promql] call time= 10.26039236100005 (s)
+ts=2024-08-28T10:55:00.594Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 12.182054971999996 (s)
+[promql] call time= 6.455636111999996 (s)
+ts=2024-08-28T10:57:50.378Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+ts=2024-08-28T11:00:38.212Z caller=compact.go:576 level=info component=tsdb msg="write block" mint=1724832000000 maxt=1724839200000 ulid=01J6CA8XBR5X2EQ0KHGFAY1HP9 duration=37.708384871s ooo=false
+[promql] read from storage time= 10.61018772999996 (s)
+[promql] call time= 10.570873863000003 (s)
+ts=2024-08-28T11:09:04.568Z caller=head.go:1345 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=228.439737ms
+ts=2024-08-28T11:09:05.011Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=137 to_segment=187 mint=1724839200000
+ts=2024-08-28T11:09:35.666Z caller=head.go:1307 level=info component=tsdb msg="WAL checkpoint complete" first=137 last=187 duration=30.655831848s
+[promql] read from storage time= 108.29249954500015 (s)
+[promql] call time= 48.90042111500005 (s)
+ts=2024-08-28T11:10:00.426Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+ts=2024-08-28T11:10:24.082Z caller=compact.go:514 level=info component=tsdb msg="compact blocks" count=2 mint=1724812682207 maxt=1724824800000 ulid=01J6CATF1JMJCY8Q8S82Z3J71R sources="[01J6BQVBV2WGKK4T1NGE44YJS6 01J6BWHEVS088VNDQFWWMD565Z]" duration=48.415229703s
+ts=2024-08-28T11:13:11.123Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+ts=2024-08-28T11:18:10.064Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J6BQVBV2WGKK4T1NGE44YJS6
+ts=2024-08-28T11:18:10.467Z caller=db.go:1680 level=info component=tsdb msg="Deleting obsolete block" block=01J6BWHEVS088VNDQFWWMD565Z
+[promql] read from storage time= 10.778092349000001 (s)
+[promql] call time= 6.465959689000022 (s)
+ts=2024-08-28T11:24:14.610Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 10.12457936300003 (s)
+[promql] call time= 10.389061528999985 (s)
+[promql] read from storage time= 20.221250354 (s)
+[promql] call time= 10.33691606000002 (s)
+ts=2024-08-28T11:36:13.142Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 13.68110088800002 (s)
+[promql] call time= 6.579140377999996 (s)
+[promql] read from storage time= 10.168579312000018 (s)
+[promql] call time= 10.371965981999974 (s)
+ts=2024-08-28T11:51:07.755Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
+[promql] read from storage time= 302.9025923179991 (s)
+[promql] call time= 146.82172898299962 (s)
+[promql] read from storage time= 98.52073751199954 (s)
+[promql] call time= 48.35002161200006 (s)
+ts=2024-08-28T12:03:10.233Z caller=group.go:549 level=warn name=fake_metric_distinct100000 index=0 component="rule manager" file=samples_gsum_concurrent.yml group=fake_metric_entropy100000_concurrent msg="Error on ingesting out-of-order result from rule evaluation" num_dropped=10000
