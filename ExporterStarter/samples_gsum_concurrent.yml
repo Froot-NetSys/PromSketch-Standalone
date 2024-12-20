@@ -17,9 +17,21 @@ groups:
        expr: entropy_over_time(fake_machine_metric[100000s])
  - name: fake_metric_entropy100000_concurrent
    rules:
-     - record: fake_metric_distinct100000
+     - record: fake_metric_entropy100000
        expr: entropy_over_time(fake_machine_metric[10000s])
  - name: fake_metric_entropy10000_concurrent
    rules: 
      - record: fake_metric_entropy10000
        expr: entropy_over_time(fake_machine_metric[1000s])
+ - name: fake_metric_l21000000_concurrent
+   rules:
+     - record: fake_metric_l21000000
+       expr: l2_over_time(fake_machine_metric[100000s])
+ - name: fake_metric_l2100000_concurrent
+   rules:
+     - record: fake_metric_l2100000
+       expr: l2_over_time(fake_machine_metric[10000s])
+ - name: fake_metric_l210000_concurrent
+   rules: 
+     - record: fake_metric_l210000
+       expr: l2_over_time(fake_machine_metric[1000s])
