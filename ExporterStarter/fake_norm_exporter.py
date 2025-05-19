@@ -22,7 +22,7 @@ class CustomCollector(Collector):
         self.rng = numpy.random.default_rng()
         self.total_samples = 0
         
-        filename = "datasets/caida_sourceip.txt" # CAIDA2019
+        filename = "datasets/caida2019_sourceip.txt" # CAIDA2019
         with open(filename, "r") as f:
             line = f.readline()
             total_line = 0

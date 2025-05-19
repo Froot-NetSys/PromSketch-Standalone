@@ -132,7 +132,7 @@ if __name__ == "__main__":
     print("before start fake exporter")
     start_fake_exporters(ts_batch_size)
     
-    time.sleep(max(window_size * 0.1 * 1.1, 1800))  # at least sleep 30 min
+    time.sleep(max(window_size * 0.1 * 1.01, 1800))  # at least sleep 30 min
     start_evaluation_tool(
         num_targets, args.timeseries, args.waiteval
     )
