@@ -1,0 +1,2 @@
+Sample_Size,Query_Type,Evaluation_Time_mean,Evaluation_Time_std,Num_Queries
+100,avg,0.0010416266099127825,0.0006460960550392534,100

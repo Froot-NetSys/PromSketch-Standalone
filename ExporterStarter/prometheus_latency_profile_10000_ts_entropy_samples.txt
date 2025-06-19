@@ -1,21 +1,33 @@
-ts=2025-05-19T03:08:44.535Z caller=main.go:576 level=info msg="No time or size retention was set so using the default time retention" duration=15d
-ts=2025-05-19T03:08:44.535Z caller=main.go:620 level=info msg="Starting Prometheus Server" mode=server version="(version=2.52.0-rc.1, branch=main, revision=88d3d185103cfb801f692ef8bf3a127fc8579e08)"
-ts=2025-05-19T03:08:44.535Z caller=main.go:625 level=info build_context="(go=go1.22.5, platform=linux/amd64, user=zz_y@node1.zz-y-257808.softmeasure-pg0.clemson.cloudlab.us, date=20250519-03:05:44, tags=netgo,builtinassets,stringlabels)"
-ts=2025-05-19T03:08:44.535Z caller=main.go:626 level=info host_details="(Linux 5.4.0-212-generic #232-Ubuntu SMP Sat Mar 15 15:34:35 UTC 2025 x86_64 node1.zz-y-257808.softmeasure-pg0.clemson.cloudlab.us (none))"
-ts=2025-05-19T03:08:44.535Z caller=main.go:627 level=info fd_limits="(soft=1048576, hard=1048576)"
-ts=2025-05-19T03:08:44.535Z caller=main.go:628 level=info vm_limits="(soft=unlimited, hard=unlimited)"
-ts=2025-05-19T03:08:44.547Z caller=web.go:568 level=info component=web msg="Start listening for connections" address=0.0.0.0:9090
-ts=2025-05-19T03:08:44.548Z caller=main.go:1138 level=info msg="Starting TSDB ..."
-ts=2025-05-19T03:08:44.552Z caller=tls_config.go:313 level=info component=web msg="Listening on" address=[::]:9090
-ts=2025-05-19T03:08:44.552Z caller=tls_config.go:316 level=info component=web msg="TLS is disabled." http2=false address=[::]:9090
-ts=2025-05-19T03:08:44.556Z caller=head.go:616 level=info component=tsdb msg="Replaying on-disk memory mappable chunks if any"
-ts=2025-05-19T03:08:44.556Z caller=head.go:703 level=info component=tsdb msg="On-disk memory mappable chunks replay completed" duration=1.542µs
-ts=2025-05-19T03:08:44.556Z caller=head.go:711 level=info component=tsdb msg="Replaying WAL, this may take a while"
-ts=2025-05-19T03:08:44.561Z caller=head.go:783 level=info component=tsdb msg="WAL segment loaded" segment=0 maxSegment=0
-ts=2025-05-19T03:08:44.561Z caller=head.go:820 level=info component=tsdb msg="WAL replay completed" checkpoint_replay_duration=40.618µs wal_replay_duration=4.46254ms wbl_replay_duration=145ns chunk_snapshot_load_duration=0s mmap_chunk_replay_duration=1.542µs total_replay_duration=4.540028ms
-ts=2025-05-19T03:08:44.566Z caller=main.go:1159 level=info fs_type=EXT4_SUPER_MAGIC
-ts=2025-05-19T03:08:44.566Z caller=main.go:1162 level=info msg="TSDB started"
-ts=2025-05-19T03:08:44.566Z caller=main.go:1344 level=info msg="Loading configuration file" filename=num_samples_config.yml
-ts=2025-05-19T03:08:44.569Z caller=main.go:1381 level=info msg="Completed loading of configuration file" filename=num_samples_config.yml totalDuration=2.912138ms db_storage=1.86µs remote_storage=1.797µs web_handler=651ns query_engine=1.527µs scrape=1.471658ms scrape_sd=41.081µs notify=1.628µs notify_sd=1.581µs rules=454.964µs tracing=18.23µs
-ts=2025-05-19T03:08:44.569Z caller=main.go:1123 level=info msg="Server is ready to receive web requests."
-ts=2025-05-19T03:08:44.569Z caller=manager.go:170 level=info component="rule manager" msg="Starting rule manager..."
+ts=2025-06-11T15:49:53.868Z caller=main.go:576 level=info msg="No time or size retention was set so using the default time retention" duration=15d
+ts=2025-06-11T15:49:53.868Z caller=main.go:620 level=info msg="Starting Prometheus Server" mode=server version="(version=2.52.0-rc.1, branch=master, revision=03ae564a171d11edae55cb04134325d25de43958)"
+ts=2025-06-11T15:49:53.868Z caller=main.go:625 level=info build_context="(go=go1.22.5, platform=linux/amd64, user=siedeta@Deta, date=20250503-17:14:57, tags=netgo,builtinassets,stringlabels)"
+ts=2025-06-11T15:49:53.869Z caller=main.go:626 level=info host_details="(Linux 6.11.0-26-generic #26~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Thu Apr 17 19:20:47 UTC 2 x86_64 deta-Pulse-GL66-12UEK (none))"
+ts=2025-06-11T15:49:53.871Z caller=main.go:627 level=info fd_limits="(soft=1048576, hard=1048576)"
+ts=2025-06-11T15:49:53.874Z caller=main.go:628 level=info vm_limits="(soft=unlimited, hard=unlimited)"
+ts=2025-06-11T15:49:54.062Z caller=web.go:568 level=info component=web msg="Start listening for connections" address=0.0.0.0:9090
+ts=2025-06-11T15:49:54.065Z caller=main.go:1138 level=info msg="Starting TSDB ..."
+ts=2025-06-11T15:49:54.103Z caller=tls_config.go:348 level=info component=web msg="Listening on" address=[::]:9090
+ts=2025-06-11T15:49:54.132Z caller=tls_config.go:351 level=info component=web msg="TLS is disabled." http2=false address=[::]:9090
+ts=2025-06-11T15:49:54.235Z caller=head.go:616 level=info component=tsdb msg="Replaying on-disk memory mappable chunks if any"
+ts=2025-06-11T15:49:54.236Z caller=head.go:703 level=info component=tsdb msg="On-disk memory mappable chunks replay completed" duration=15.212µs
+ts=2025-06-11T15:49:54.236Z caller=head.go:711 level=info component=tsdb msg="Replaying WAL, this may take a while"
+ts=2025-06-11T15:49:54.278Z caller=head.go:783 level=info component=tsdb msg="WAL segment loaded" segment=0 maxSegment=0
+ts=2025-06-11T15:49:54.395Z caller=head.go:820 level=info component=tsdb msg="WAL replay completed" checkpoint_replay_duration=4.048875ms wal_replay_duration=106.856508ms wbl_replay_duration=178ns chunk_snapshot_load_duration=0s mmap_chunk_replay_duration=15.212µs total_replay_duration=111.611525ms
+ts=2025-06-11T15:49:54.403Z caller=main.go:1159 level=info fs_type=65735546
+ts=2025-06-11T15:49:54.403Z caller=main.go:1162 level=info msg="TSDB started"
+ts=2025-06-11T15:49:54.407Z caller=main.go:1344 level=info msg="Loading configuration file" filename=num_samples_config.yml
+ts=2025-06-11T15:49:54.456Z caller=main.go:1381 level=info msg="Completed loading of configuration file" filename=num_samples_config.yml totalDuration=48.520901ms db_storage=19.667µs remote_storage=3.942µs web_handler=1.565µs query_engine=2.426µs scrape=7.202166ms scrape_sd=66.809µs notify=1.47µs notify_sd=1.711µs rules=31.140093ms tracing=9.976µs
+ts=2025-06-11T15:49:54.463Z caller=main.go:1123 level=info msg="Server is ready to receive web requests."
+ts=2025-06-11T15:49:54.463Z caller=manager.go:170 level=info component="rule manager" msg="Starting rule manager..."
+ts=2025-06-11T15:50:05.293Z caller=main.go:971 level=warn msg="Received an OS signal, exiting gracefully..." signal=interrupt
+ts=2025-06-11T15:50:05.298Z caller=main.go:995 level=info msg="Stopping scrape discovery manager..."
+ts=2025-06-11T15:50:05.299Z caller=main.go:1009 level=info msg="Stopping notify discovery manager..."
+ts=2025-06-11T15:50:05.299Z caller=main.go:991 level=info msg="Scrape discovery manager stopped"
+ts=2025-06-11T15:50:05.299Z caller=manager.go:184 level=info component="rule manager" msg="Stopping rule manager..."
+ts=2025-06-11T15:50:05.299Z caller=main.go:1005 level=info msg="Notify discovery manager stopped"
+ts=2025-06-11T15:50:05.299Z caller=manager.go:194 level=info component="rule manager" msg="Rule manager stopped"
+ts=2025-06-11T15:50:05.300Z caller=main.go:1048 level=info msg="Stopping scrape manager..."
+ts=2025-06-11T15:50:05.322Z caller=main.go:1040 level=info msg="Scrape manager stopped"
+ts=2025-06-11T15:50:05.347Z caller=notifier.go:623 level=info component=notifier msg="Stopping notification manager..."
+ts=2025-06-11T15:50:05.348Z caller=main.go:1270 level=info msg="Notifier manager stopped"
+ts=2025-06-11T15:50:05.351Z caller=main.go:1282 level=info msg="See you next time!"

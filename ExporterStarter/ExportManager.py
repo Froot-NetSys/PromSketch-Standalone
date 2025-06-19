@@ -21,7 +21,7 @@ import subprocess
 
 ports = []
 processes = []
-START_PORT = 10000
+START_PORT = 8000
 
 
 def define_targets(file, query_type):
@@ -43,18 +43,16 @@ def create_ports(num_targets):
         ports.append(port)
 
 
-def start_prometheus(config, query_type, num_ts):
+def start_data_ingester(config, query_type, num_ts): # replace prometheus
     f = open(
-        f"prometheus_latency_profile_{str(num_ts)}_ts_{query_type}_samples.txt",
+        f"promsketch_ingester_log_{str(num_ts)}_ts_{query_type}_samples.txt",
         "w",
     )
     process = subprocess.Popen(
         [
-            "./prometheus",
-            f"--config.file={config}",
-            '--rules.max-concurrent-evals=20',
-            '--query.max-samples=1000000000',
-            '--query.timeout=60m',
+            sys.executable,
+            "custom_ingester_noDB.py", # Panggil skrip ingester kustom Anda
+            f"--config={config}",
         ],
         stdout=f,
         stderr=f,
@@ -62,9 +60,11 @@ def start_prometheus(config, query_type, num_ts):
     processes.append(process)
 
 
+
 def start_fake_exporters(ts_batch_size):
     for port in ports:
         starting_val = (port - START_PORT) * ts_batch_size
+        print(f"DEBUG: Launching fake_norm_exporter.py --port={str(port)} --batchsize={str(ts_batch_size)}")
         process = subprocess.Popen(
             [
                 sys.executable,
@@ -89,6 +89,8 @@ def start_evaluation_tool(
             f"--targets={str(num_targets)}",
             f"--timeseries={str(num_timeseries)}",
             f"--waiteval={str(waiteval)}",
+            f"--windowsize={str(window_size)}",
+            f"--querytype={str(query_type)}",
         ]
     )
     print("started evaluation tool!")
@@ -128,7 +130,7 @@ if __name__ == "__main__":
     create_ports(num_targets)
     define_targets(config_file, query_type)
 
-    start_prometheus(config_file, query_type, args.timeseries)
+    start_data_ingester(config_file, query_type, args.timeseries) # call custom_ingester
     print("before start fake exporter")
     start_fake_exporters(ts_batch_size)
     

@@ -1,0 +1,85 @@
+ts=2025-06-13T09:58:52.829Z caller=main.go:576 level=info msg="No time or size retention was set so using the default time retention" duration=15d
+ts=2025-06-13T09:58:52.829Z caller=main.go:620 level=info msg="Starting Prometheus Server" mode=server version="(version=2.52.0-rc.1, branch=master, revision=03ae564a171d11edae55cb04134325d25de43958)"
+ts=2025-06-13T09:58:52.829Z caller=main.go:625 level=info build_context="(go=go1.22.5, platform=linux/amd64, user=siedeta@Deta, date=20250503-17:14:57, tags=netgo,builtinassets,stringlabels)"
+ts=2025-06-13T09:58:52.829Z caller=main.go:626 level=info host_details="(Linux 6.11.0-26-generic #26~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Thu Apr 17 19:20:47 UTC 2 x86_64 deta-Pulse-GL66-12UEK (none))"
+ts=2025-06-13T09:58:52.829Z caller=main.go:627 level=info fd_limits="(soft=1048576, hard=1048576)"
+ts=2025-06-13T09:58:52.829Z caller=main.go:628 level=info vm_limits="(soft=unlimited, hard=unlimited)"
+ts=2025-06-13T09:58:52.847Z caller=web.go:568 level=info component=web msg="Start listening for connections" address=0.0.0.0:9090
+ts=2025-06-13T09:58:52.849Z caller=main.go:1138 level=info msg="Starting TSDB ..."
+ts=2025-06-13T09:58:52.856Z caller=tls_config.go:348 level=info component=web msg="Listening on" address=[::]:9090
+ts=2025-06-13T09:58:52.858Z caller=tls_config.go:351 level=info component=web msg="TLS is disabled." http2=false address=[::]:9090
+ts=2025-06-13T09:58:52.863Z caller=head.go:616 level=info component=tsdb msg="Replaying on-disk memory mappable chunks if any"
+ts=2025-06-13T09:58:52.863Z caller=head.go:703 level=info component=tsdb msg="On-disk memory mappable chunks replay completed" duration=2.032µs
+ts=2025-06-13T09:58:52.863Z caller=head.go:711 level=info component=tsdb msg="Replaying WAL, this may take a while"
+ts=2025-06-13T09:58:52.864Z caller=head.go:783 level=info component=tsdb msg="WAL segment loaded" segment=0 maxSegment=0
+ts=2025-06-13T09:58:52.864Z caller=head.go:820 level=info component=tsdb msg="WAL replay completed" checkpoint_replay_duration=289.767µs wal_replay_duration=961.669µs wbl_replay_duration=206ns chunk_snapshot_load_duration=0s mmap_chunk_replay_duration=2.032µs total_replay_duration=1.342025ms
+ts=2025-06-13T09:58:52.868Z caller=main.go:1159 level=info fs_type=65735546
+ts=2025-06-13T09:58:52.868Z caller=main.go:1162 level=info msg="TSDB started"
+ts=2025-06-13T09:58:52.868Z caller=main.go:1344 level=info msg="Loading configuration file" filename=num_samples_config.yml
+ts=2025-06-13T09:58:52.869Z caller=main.go:1381 level=info msg="Completed loading of configuration file" filename=num_samples_config.yml totalDuration=1.471734ms db_storage=1.81µs remote_storage=1.854µs web_handler=494ns query_engine=1.443µs scrape=378.776µs scrape_sd=28.704µs notify=881ns notify_sd=1.105µs rules=549.43µs tracing=7.264µs
+ts=2025-06-13T09:58:52.870Z caller=main.go:1123 level=info msg="Server is ready to receive web requests."
+ts=2025-06-13T09:58:52.870Z caller=manager.go:170 level=info component="rule manager" msg="Starting rule manager..."
+[promql] sketch alloc time= 1.8532999999999997e-05 (s)
+[promql] sketch query time= 0.010769653000000013 (s)
+[promql] read from storage time= 0.026582289999999988 (s)
+[promql] call time= 0.057525664 (s)
+[promql] sketch alloc time= 1.1485000000000003e-05 (s)
+[promql] sketch query time= 0.01623272100000001 (s)
+[promql] read from storage time= 0.028605625000000006 (s)
+[promql] call time= 0.05211443999999999 (s)
+[promql] sketch alloc time= 7.975e-06 (s)
+[promql] sketch query time= 0.023048823000000024 (s)
+[promql] read from storage time= 0.024125910999999996 (s)
+[promql] call time= 0.045049758 (s)
+[promql] sketch alloc time= 8.058e-06 (s)
+[promql] sketch query time= 0.03235146600000003 (s)
+[promql] read from storage time= 0.022839859999999997 (s)
+[promql] call time= 0.053250778999999984 (s)
+[promql] sketch alloc time= 4.794999999999998e-06 (s)
+[promql] sketch query time= 0.04015221999999992 (s)
+[promql] read from storage time= 0.026315526 (s)
+[promql] call time= 0.044457187999999995 (s)
+[promql] sketch alloc time= 5.4839999999999995e-06 (s)
+[promql] sketch query time= 0.04123118000000005 (s)
+[promql] read from storage time= 0.023357888000000004 (s)
+[promql] call time= 0.039189488 (s)
+[promql] sketch alloc time= 8.070999999999998e-06 (s)
+[promql] sketch query time= 0.04823310700000004 (s)
+[promql] read from storage time= 0.022309226 (s)
+[promql] call time= 0.042131835000000006 (s)
+[promql] sketch alloc time= 4.2e-07 (s)
+[promql] sketch query time= 0.050929110000000034 (s)
+[promql] read from storage time= 0.001276221 (s)
+[promql] call time= 0.001546372 (s)
+[promql] sketch alloc time= 3.011e-06 (s)
+[promql] sketch query time= 0.051575131999999954 (s)
+[promql] read from storage time= 0.020336933 (s)
+[promql] call time= 0.03109389 (s)
+[promql] sketch alloc time= 8.609999999999999e-06 (s)
+[promql] sketch query time= 0.06033701099999999 (s)
+[promql] read from storage time= 0.021733628 (s)
+[promql] call time= 0.037618765 (s)
+[promql] sketch alloc time= 2.1600000000000005e-06 (s)
+[promql] sketch query time= 0.065063528 (s)
+[promql] read from storage time= 0.020891043 (s)
+[promql] call time= 0.032022751 (s)
+[promql] sketch alloc time= 1.9220000000000004e-06 (s)
+[promql] sketch query time= 0.068044363 (s)
+[promql] read from storage time= 0.01695655 (s)
+[promql] call time= 0.0241049 (s)
+[promql] sketch alloc time= 9.981999999999999e-06 (s)
+[promql] sketch query time= 0.08798215600000008 (s)
+[promql] read from storage time= 0.019721706000000002 (s)
+[promql] call time= 0.034838899000000007 (s)
+ts=2025-06-13T11:28:54.619Z caller=main.go:971 level=warn msg="Received an OS signal, exiting gracefully..." signal=interrupt
+ts=2025-06-13T11:28:54.621Z caller=main.go:995 level=info msg="Stopping scrape discovery manager..."
+ts=2025-06-13T11:28:54.622Z caller=main.go:1009 level=info msg="Stopping notify discovery manager..."
+ts=2025-06-13T11:28:54.622Z caller=main.go:991 level=info msg="Scrape discovery manager stopped"
+ts=2025-06-13T11:28:54.623Z caller=manager.go:184 level=info component="rule manager" msg="Stopping rule manager..."
+ts=2025-06-13T11:28:54.623Z caller=main.go:1005 level=info msg="Notify discovery manager stopped"
+ts=2025-06-13T11:28:54.625Z caller=manager.go:194 level=info component="rule manager" msg="Rule manager stopped"
+ts=2025-06-13T11:28:54.629Z caller=main.go:1048 level=info msg="Stopping scrape manager..."
+ts=2025-06-13T11:28:54.648Z caller=main.go:1040 level=info msg="Scrape manager stopped"
+ts=2025-06-13T11:28:54.787Z caller=notifier.go:623 level=info component=notifier msg="Stopping notification manager..."
+ts=2025-06-13T11:28:54.788Z caller=main.go:1270 level=info msg="Notifier manager stopped"
+ts=2025-06-13T11:28:54.788Z caller=main.go:1282 level=info msg="See you next time!"
