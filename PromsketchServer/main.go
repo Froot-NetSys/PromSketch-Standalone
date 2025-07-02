@@ -741,7 +741,6 @@ func main() {
 	router.POST("/ingest", handleIngest)
 	router.GET("/query", handleQuery)
 	router.GET("/throughput_test", runThroughputTest)
-	router.GET("/throughput_test_timed", runThroughputTestTimed)
 	router.GET("/health", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"status": "UP", "message": "PromSketch Go server is running."})
 	})
