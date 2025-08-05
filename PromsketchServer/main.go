@@ -74,11 +74,11 @@ func init() {
 }
 
 var (
-	machineToPort   sync.Map // maps machineID (string) to port index (int)
 	portServers     []*PortServer
 	portMutex       sync.Mutex
 	startPort       = 7100
 	machinesPerPort = 200
+	lastYMLUpdate   time.Time
 )
 
 type PortServer struct {
@@ -169,11 +169,16 @@ func UpdatePrometheusYML(path string) error {
 
 	lines := strings.Split(string(data), "\n")
 	start, end := -1, -1
+	inScrapeConfigs := false
+
 	for i, line := range lines {
-		if strings.Contains(line, "job_name: \"promsketch_raw_groups\"") {
+		if strings.HasPrefix(strings.TrimSpace(line), "scrape_configs:") {
+			inScrapeConfigs = true
+		}
+		if inScrapeConfigs && strings.Contains(line, "job_name: \"promsketch_raw_groups\"") {
 			start = i
 		}
-		if start != -1 && strings.HasPrefix(line, "  - job_name:") && i > start {
+		if start != -1 && i > start && strings.HasPrefix(line, "  - job_name:") {
 			end = i
 			break
 		}
@@ -189,13 +194,34 @@ func UpdatePrometheusYML(path string) error {
 		return err
 	}
 
+	scrapeSection := strings.Split(buf.String(), "\n")
+
 	var newLines []string
 	if start != -1 {
-		newLines = append(lines[:start], strings.Split(buf.String(), "\n")...)
+		// Ganti bagian lama
+		newLines = append(lines[:start], scrapeSection...)
 		newLines = append(newLines, lines[end:]...)
 	} else {
-		newLines = append(lines, "")
-		newLines = append(newLines, strings.Split(buf.String(), "\n")...)
+		// Tambahkan ke akhir scrape_configs
+		inserted := false
+		for i, line := range lines {
+			newLines = append(newLines, line)
+			if strings.HasPrefix(strings.TrimSpace(line), "scrape_configs:") && !inserted {
+				inserted = true
+				// cari indentasi
+				for j := i + 1; j < len(lines); j++ {
+					if strings.HasPrefix(lines[j], "  - job_name:") || strings.TrimSpace(lines[j]) == "" {
+						continue
+					}
+					// sisipkan di sini
+					newLines = append(newLines, scrapeSection...)
+					break
+				}
+			}
+		}
+		if !inserted {
+			newLines = append(newLines, scrapeSection...)
+		}
 	}
 
 	return os.WriteFile(path, []byte(strings.Join(newLines, "\n")), 0644)
@@ -209,6 +235,7 @@ func main() {
 	router.GET("/metrics", gin.WrapH(promhttp.Handler()))
 	// router.GET("/throughput_test", runStressThroughputTest)
 	router.GET("/parse", handleParse)
+	router.POST("/ingest-query-result", handleQueryResultIngest)
 	router.GET("/debug-state", handleDebugState)
 
 	router.GET("/health", func(c *gin.Context) {
@@ -228,14 +255,12 @@ func main() {
 
 	ymlPath := "./prometheus/documentation/examples/prometheus.yml"
 	if err := UpdatePrometheusYML(ymlPath); err != nil {
-		log.Printf("❌ Failed to update Prometheus config: %v", err)
+		log.Printf("Failed to update Prometheus config: %v", err)
 	} else {
-		log.Printf("✅ Updated Prometheus config at %s", ymlPath)
+		log.Printf("Updated Prometheus config at %s", ymlPath)
 	}
 }
 
-// handleDebugState akan memeriksa 10000 time series pertama
-// dan mencetak yang mana saja yang sudah memiliki data sketch.
 func handleDebugState(c *gin.Context) {
 	log.Println("[DEBUG] Starting state check...")
 	foundCount := 0
@@ -341,16 +366,12 @@ func handleIngest(c *gin.Context) {
 			defer wg.Done()
 			defer func() { <-sem }() // release slot
 
-			// log.Printf("[INGEST] name=%s labels=%v value=%.2f", metric.Name, metric.Labels, metric.Value)
-
 			lsetBuilder := labels.NewBuilder(labels.Labels{})
 			for k, v := range metric.Labels {
 				lsetBuilder.Set(k, v)
 			}
 			lsetBuilder.Set(labels.MetricName, metric.Name)
 			lset := lsetBuilder.Labels()
-
-			// log.Printf("[INGEST] Inserting to sketch: name=%s labels=%v ts=%d value=%.2f", metric.Name, metric.Labels, payload.Timestamp, metric.Value)
 
 			if err := ps.SketchInsert(lset, payload.Timestamp, metric.Value); err == nil {
 				atomic.AddInt64(&totalIngested, 1)
@@ -365,17 +386,47 @@ func handleIngest(c *gin.Context) {
 					}
 				}
 			}
-
 		}(metric)
 	}
 
 	wg.Wait()
+
+	// ✅ Update prometheus.yml setelah semua port aktif
+	now := time.Now()
+	if now.Sub(lastYMLUpdate) > 10*time.Second {
+		ymlPath := "./prometheus/documentation/examples/prometheus.yml"
+		if err := UpdatePrometheusYML(ymlPath); err != nil {
+			log.Printf("Failed to update Prometheus config: %v", err)
+		} else {
+			log.Printf("Updated Prometheus config at %s", ymlPath)
+			lastYMLUpdate = now
+		}
+	}
+
 	totalDuration := time.Since(start).Milliseconds()
 	log.Printf("[BATCH COMPLETED] Processed %d metrics in %dms", len(payload.Metrics), totalDuration)
 
-	// go forwardToCloud(payload)
-
 	c.JSON(http.StatusOK, gin.H{"status": "success", "ingested_metrics_count": len(payload.Metrics)})
+}
+
+// menerima hasil query dari promtools.py
+func handleQueryResultIngest(c *gin.Context) {
+	var result struct {
+		Function       string  `json:"function"`
+		OriginalMetric string  `json:"original_metric"`
+		MachineID      string  `json:"machineid"`
+		Quantile       string  `json:"quantile"`
+		Value          float64 `json:"value"`
+		Timestamp      int64   `json:"timestamp"`
+	}
+
+	if err := c.ShouldBindJSON(&result); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	queryResults.WithLabelValues(result.Function, result.OriginalMetric, result.MachineID, result.Quantile).Set(result.Value)
+	c.JSON(http.StatusOK, gin.H{"status": "success"})
 }
 
 // func pushSyntheticResult(metricName string, labels map[string]string, value float64, timestamp int64) {

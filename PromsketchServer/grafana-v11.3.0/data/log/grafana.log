@@ -1764,3 +1764,242 @@ logger=grafana-apiserver t=2025-08-01T23:52:10.800518135+07:00 level=info msg="S
 logger=tracing t=2025-08-01T23:52:10.800639739+07:00 level=info msg="Closing tracing"
 logger=ticker t=2025-08-01T23:52:10.800871386+07:00 level=info msg=stopped last_tick=2025-08-01T23:52:10+07:00
 logger=plugin.hamedkarbasi93-kafka-datasource t=2025-08-01T23:52:10.803965921+07:00 level=info msg="plugin process exited" plugin=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/data/plugins/hamedkarbasi93-kafka-datasource/gpx_kafka-datasource_linux_amd64 id=22031
+logger=settings t=2025-08-05T19:53:24.143194618+07:00 level=info msg="Starting Grafana" version=11.3.0 commit=d9455ff7db73b694db7d412e49a68bec767f2b5a branch=HEAD compiled=2025-08-05T19:53:24+07:00
+logger=settings t=2025-08-05T19:53:24.143486224+07:00 level=info msg="Config loaded from" file=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/conf/defaults.ini
+logger=settings t=2025-08-05T19:53:24.143517022+07:00 level=info msg=Target target=[all]
+logger=settings t=2025-08-05T19:53:24.143541465+07:00 level=info msg="Path Home" path=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0
+logger=settings t=2025-08-05T19:53:24.14356241+07:00 level=info msg="Path Data" path=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/data
+logger=settings t=2025-08-05T19:53:24.143582204+07:00 level=info msg="Path Logs" path=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/data/log
+logger=settings t=2025-08-05T19:53:24.143601926+07:00 level=info msg="Path Plugins" path=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/data/plugins
+logger=settings t=2025-08-05T19:53:24.143622004+07:00 level=info msg="Path Provisioning" path=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/conf/provisioning
+logger=settings t=2025-08-05T19:53:24.143642675+07:00 level=info msg="App mode production"
+logger=featuremgmt t=2025-08-05T19:53:24.143857356+07:00 level=info msg=FeatureToggles managedPluginsInstall=true alertingNoDataErrorExecution=true panelMonitoring=true logsContextDatasourceUi=true ssoSettingsApi=true promQLScope=true dashboardSceneSolo=true lokiMetricDataplane=true dashboardScene=true transformationsRedesign=true notificationBanner=true tlsMemcached=true awsAsyncQueryCaching=true angularDeprecationUI=true alertingInsights=true lokiStructuredMetadata=true pinNavItems=true lokiQueryHints=true openSearchBackendFlowEnabled=true recordedQueriesMulti=true publicDashboards=true groupToNestedTableTransformation=true kubernetesPlaylists=true lokiQuerySplitting=true accessControlOnCall=true publicDashboardsScene=true prometheusAzureOverrideAudience=true annotationPermissionUpdate=true logRowsPopoverMenu=true logsInfiniteScrolling=true prometheusConfigOverhaulAuth=true cloudWatchCrossAccountQuerying=true dashboardSceneForViewers=true autoMigrateXYChartPanel=true topnav=true transformationsVariableSupport=true exploreMetrics=true dashgpt=true addFieldFromCalculationStatFunctions=true cloudWatchRoundUpEndTime=true recoveryThreshold=true logsExploreTableVisualisation=true nestedFolders=true alertingSimplifiedRouting=true cloudWatchNewLabelParsing=true correlations=true prometheusMetricEncyclopedia=true formatString=true influxdbBackendMigration=true dataplaneFrontendFallback=true
+logger=sqlstore t=2025-08-05T19:53:24.143948735+07:00 level=info msg="Connecting to DB" dbtype=sqlite3
+logger=sqlstore t=2025-08-05T19:53:24.143996935+07:00 level=warn msg="SQLite database file has broader permissions than it should" path=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/data/grafana.db mode=-rwxrwxrwx expected=-rw-r-----
+logger=migrator t=2025-08-05T19:53:24.164858274+07:00 level=info msg="Locking database"
+logger=migrator t=2025-08-05T19:53:24.165078547+07:00 level=info msg="Starting DB migrations"
+logger=migrator t=2025-08-05T19:53:24.177242675+07:00 level=info msg="migrations completed" performed=0 skipped=704 duration=440.576µs
+logger=migrator t=2025-08-05T19:53:24.177730489+07:00 level=info msg="Unlocking database"
+logger=licensing t=2025-08-05T19:53:24.178827137+07:00 level=info msg="Validated license token" appURL=http://localhost:3000/ source=disk status=NotFound
+logger=secrets t=2025-08-05T19:53:24.178897493+07:00 level=info msg="Envelope encryption state" enabled=true currentprovider=secretKey.v1
+logger=plugin.angulardetectorsprovider.dynamic t=2025-08-05T19:53:24.226749632+07:00 level=info msg="Restored cache from database" duration=483.599µs
+logger=plugin.store t=2025-08-05T19:53:24.233868623+07:00 level=info msg="Loading plugins..."
+logger=plugins.registration t=2025-08-05T19:53:24.321109146+07:00 level=error msg="Could not register plugin" pluginId=xychart error="plugin xychart is already registered"
+logger=plugins.initialization t=2025-08-05T19:53:24.321257271+07:00 level=error msg="Could not initialize plugin" pluginId=xychart error="plugin xychart is already registered"
+logger=plugins.registration t=2025-08-05T19:53:24.35298908+07:00 level=info msg="Plugin registered" pluginId=grafana-lokiexplore-app
+logger=plugins.registration t=2025-08-05T19:53:24.485183125+07:00 level=info msg="Plugin registered" pluginId=hamedkarbasi93-kafka-datasource
+logger=plugin.store t=2025-08-05T19:53:24.485289127+07:00 level=info msg="Plugins loaded" count=56 duration=251.420805ms
+logger=caching.service t=2025-08-05T19:53:24.488928483+07:00 level=info msg="Caching service is disabled"
+logger=query_data t=2025-08-05T19:53:24.493255006+07:00 level=info msg="Query Service initialization"
+logger=live.push_http t=2025-08-05T19:53:24.500339132+07:00 level=info msg="Live Push Gateway initialization"
+logger=ngalert.notifier.alertmanager org=1 t=2025-08-05T19:53:24.504623036+07:00 level=info msg="Applying new configuration to Alertmanager" configHash=d2c56faca6af2a5772ff4253222f7386
+logger=ngalert.state.manager t=2025-08-05T19:53:24.514881701+07:00 level=info msg="Running in alternative execution of Error/NoData mode"
+logger=infra.usagestats.collector t=2025-08-05T19:53:24.524085858+07:00 level=info msg="registering usage stat providers" usageStatsProvidersLen=3
+logger=provisioning.alerting t=2025-08-05T19:53:24.527751492+07:00 level=info msg="starting to provision alerting"
+logger=provisioning.alerting t=2025-08-05T19:53:24.527836657+07:00 level=info msg="finished to provision alerting"
+logger=ngalert.multiorg.alertmanager t=2025-08-05T19:53:24.529423027+07:00 level=info msg="Starting MultiOrg Alertmanager"
+logger=ngalert.state.manager t=2025-08-05T19:53:24.529337672+07:00 level=info msg="Warming state cache for startup"
+logger=grafanaStorageLogger t=2025-08-05T19:53:24.529961789+07:00 level=info msg="Storage starting"
+logger=report t=2025-08-05T19:53:24.529982103+07:00 level=warn msg="Scheduling and sending of reports disabled, SMTP is not configured and enabled. Configure SMTP to enable."
+logger=http.server t=2025-08-05T19:53:24.545161926+07:00 level=info msg="HTTP Server Listen" address=[::]:3000 protocol=http subUrl= socket=
+logger=ngalert.state.manager t=2025-08-05T19:53:24.584092539+07:00 level=info msg="State cache has been initialized" states=0 duration=54.750813ms
+logger=ngalert.scheduler t=2025-08-05T19:53:24.584260716+07:00 level=info msg="Starting scheduler" tickInterval=10s maxAttempts=1
+logger=ticker t=2025-08-05T19:53:24.584370433+07:00 level=info msg=starting first_tick=2025-08-05T19:53:30+07:00
+logger=provisioning.dashboard t=2025-08-05T19:53:24.64144048+07:00 level=info msg="starting to provision dashboards"
+logger=provisioning.dashboard t=2025-08-05T19:53:24.643839195+07:00 level=info msg="finished to provision dashboards"
+logger=grafana-apiserver t=2025-08-05T19:53:24.811782549+07:00 level=info msg="Adding GroupVersion playlist.grafana.app v0alpha1 to ResourceManager"
+logger=grafana-apiserver t=2025-08-05T19:53:24.812334802+07:00 level=info msg="Adding GroupVersion featuretoggle.grafana.app v0alpha1 to ResourceManager"
+logger=grafana-apiserver t=2025-08-05T19:53:24.813661311+07:00 level=info msg="Adding GroupVersion iam.grafana.app v0alpha1 to ResourceManager"
+logger=grafana.update.checker t=2025-08-05T19:53:24.815471414+07:00 level=info msg="Update check succeeded" duration=285.882628ms
+logger=plugins.update.checker t=2025-08-05T19:53:24.818360734+07:00 level=info msg="Update check succeeded" duration=288.743196ms
+logger=plugin.angulardetectorsprovider.dynamic t=2025-08-05T19:53:24.887362978+07:00 level=info msg="Patterns update finished" duration=266.14496ms
+logger=context userId=0 orgId=0 uname= t=2025-08-05T19:53:38.962950324+07:00 level=info msg="Request Completed" method=GET path=/ status=302 remote_addr=127.0.0.1 time_ms=9 duration=9.206086ms size=47 referer= handler=/ status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T19:53:38.973930268+07:00 level=info msg="Request Completed" method=GET path=/user/auth-tokens/rotate status=302 remote_addr=127.0.0.1 time_ms=9 duration=9.138795ms size=24 referer= handler=/user/auth-tokens/rotate status_source=server
+logger=context userId=1 orgId=1 uname=admin t=2025-08-05T19:53:39.555772338+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=-1 remote_addr=127.0.0.1 time_ms=3 duration=3.645437ms size=0 referer= handler=/api/live/ws status_source=server
+logger=infra.usagestats t=2025-08-05T19:54:19.535117776+07:00 level=info msg="Usage stats are ready to report"
+logger=cleanup t=2025-08-05T20:03:24.626675447+07:00 level=info msg="Completed cleanup jobs" duration=84.967878ms
+logger=plugins.update.checker t=2025-08-05T20:03:25.099650439+07:00 level=info msg="Update check succeeded" duration=280.866844ms
+logger=server t=2025-08-05T20:12:04.016137955+07:00 level=info msg="Shutdown started" reason="System signal: interrupt"
+logger=ticker t=2025-08-05T20:12:04.016636702+07:00 level=info msg=stopped last_tick=2025-08-05T20:12:00+07:00
+logger=tracing t=2025-08-05T20:12:04.016553195+07:00 level=info msg="Closing tracing"
+logger=grafana-apiserver t=2025-08-05T20:12:04.016571643+07:00 level=info msg="StorageObjectCountTracker pruner is exiting"
+logger=plugin.hamedkarbasi93-kafka-datasource t=2025-08-05T20:12:04.02040013+07:00 level=info msg="plugin process exited" plugin=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/data/plugins/hamedkarbasi93-kafka-datasource/gpx_kafka-datasource_linux_amd64 id=57209
+logger=settings t=2025-08-05T20:12:13.670071016+07:00 level=info msg="Starting Grafana" version=11.3.0 commit=d9455ff7db73b694db7d412e49a68bec767f2b5a branch=HEAD compiled=2025-08-05T20:12:13+07:00
+logger=settings t=2025-08-05T20:12:13.670505826+07:00 level=info msg="Config loaded from" file=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/conf/defaults.ini
+logger=settings t=2025-08-05T20:12:13.670619597+07:00 level=info msg=Target target=[all]
+logger=settings t=2025-08-05T20:12:13.67071386+07:00 level=info msg="Path Home" path=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0
+logger=settings t=2025-08-05T20:12:13.670816618+07:00 level=info msg="Path Data" path=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/data
+logger=settings t=2025-08-05T20:12:13.670923092+07:00 level=info msg="Path Logs" path=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/data/log
+logger=settings t=2025-08-05T20:12:13.670993429+07:00 level=info msg="Path Plugins" path=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/data/plugins
+logger=settings t=2025-08-05T20:12:13.671135663+07:00 level=info msg="Path Provisioning" path=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/conf/provisioning
+logger=settings t=2025-08-05T20:12:13.671221837+07:00 level=info msg="App mode production"
+logger=featuremgmt t=2025-08-05T20:12:13.671598918+07:00 level=info msg=FeatureToggles tlsMemcached=true cloudWatchNewLabelParsing=true recordedQueriesMulti=true dashboardSceneForViewers=true accessControlOnCall=true nestedFolders=true publicDashboards=true addFieldFromCalculationStatFunctions=true dashboardScene=true lokiStructuredMetadata=true managedPluginsInstall=true promQLScope=true alertingNoDataErrorExecution=true logsExploreTableVisualisation=true pinNavItems=true exploreMetrics=true awsAsyncQueryCaching=true recoveryThreshold=true transformationsRedesign=true influxdbBackendMigration=true logRowsPopoverMenu=true notificationBanner=true lokiQueryHints=true dashgpt=true angularDeprecationUI=true alertingSimplifiedRouting=true formatString=true correlations=true dataplaneFrontendFallback=true lokiMetricDataplane=true prometheusAzureOverrideAudience=true prometheusConfigOverhaulAuth=true logsContextDatasourceUi=true cloudWatchCrossAccountQuerying=true transformationsVariableSupport=true dashboardSceneSolo=true logsInfiniteScrolling=true publicDashboardsScene=true openSearchBackendFlowEnabled=true annotationPermissionUpdate=true topnav=true panelMonitoring=true kubernetesPlaylists=true prometheusMetricEncyclopedia=true groupToNestedTableTransformation=true alertingInsights=true lokiQuerySplitting=true autoMigrateXYChartPanel=true ssoSettingsApi=true cloudWatchRoundUpEndTime=true
+logger=sqlstore t=2025-08-05T20:12:13.6717734+07:00 level=info msg="Connecting to DB" dbtype=sqlite3
+logger=sqlstore t=2025-08-05T20:12:13.67185386+07:00 level=warn msg="SQLite database file has broader permissions than it should" path=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/data/grafana.db mode=-rwxrwxrwx expected=-rw-r-----
+logger=migrator t=2025-08-05T20:12:13.680090013+07:00 level=info msg="Locking database"
+logger=migrator t=2025-08-05T20:12:13.680299892+07:00 level=info msg="Starting DB migrations"
+logger=migrator t=2025-08-05T20:12:13.69241364+07:00 level=info msg="migrations completed" performed=0 skipped=704 duration=557.002µs
+logger=migrator t=2025-08-05T20:12:13.692942149+07:00 level=info msg="Unlocking database"
+logger=licensing t=2025-08-05T20:12:13.693550242+07:00 level=info msg="Validated license token" appURL=http://localhost:3000/ source=disk status=NotFound
+logger=secrets t=2025-08-05T20:12:13.693631458+07:00 level=info msg="Envelope encryption state" enabled=true currentprovider=secretKey.v1
+logger=plugin.angulardetectorsprovider.dynamic t=2025-08-05T20:12:13.729827476+07:00 level=info msg="Restored cache from database" duration=417.906µs
+logger=plugin.store t=2025-08-05T20:12:13.730343322+07:00 level=info msg="Loading plugins..."
+logger=plugins.registration t=2025-08-05T20:12:13.809500716+07:00 level=error msg="Could not register plugin" pluginId=xychart error="plugin xychart is already registered"
+logger=plugins.initialization t=2025-08-05T20:12:13.809630803+07:00 level=error msg="Could not initialize plugin" pluginId=xychart error="plugin xychart is already registered"
+logger=plugins.registration t=2025-08-05T20:12:13.831922517+07:00 level=info msg="Plugin registered" pluginId=grafana-lokiexplore-app
+logger=plugins.registration t=2025-08-05T20:12:13.956870313+07:00 level=info msg="Plugin registered" pluginId=hamedkarbasi93-kafka-datasource
+logger=plugin.store t=2025-08-05T20:12:13.956985482+07:00 level=info msg="Plugins loaded" count=56 duration=226.642331ms
+logger=caching.service t=2025-08-05T20:12:13.958742895+07:00 level=info msg="Caching service is disabled"
+logger=query_data t=2025-08-05T20:12:13.961904059+07:00 level=info msg="Query Service initialization"
+logger=live.push_http t=2025-08-05T20:12:13.965215889+07:00 level=info msg="Live Push Gateway initialization"
+logger=ngalert.notifier.alertmanager org=1 t=2025-08-05T20:12:13.968347922+07:00 level=info msg="Applying new configuration to Alertmanager" configHash=d2c56faca6af2a5772ff4253222f7386
+logger=ngalert.state.manager t=2025-08-05T20:12:13.977829293+07:00 level=info msg="Running in alternative execution of Error/NoData mode"
+logger=infra.usagestats.collector t=2025-08-05T20:12:13.980980282+07:00 level=info msg="registering usage stat providers" usageStatsProvidersLen=3
+logger=provisioning.alerting t=2025-08-05T20:12:13.982776289+07:00 level=info msg="starting to provision alerting"
+logger=provisioning.alerting t=2025-08-05T20:12:13.982884856+07:00 level=info msg="finished to provision alerting"
+logger=grafanaStorageLogger t=2025-08-05T20:12:13.983305777+07:00 level=info msg="Storage starting"
+logger=report t=2025-08-05T20:12:13.983504373+07:00 level=warn msg="Scheduling and sending of reports disabled, SMTP is not configured and enabled. Configure SMTP to enable."
+logger=ngalert.multiorg.alertmanager t=2025-08-05T20:12:13.983614918+07:00 level=info msg="Starting MultiOrg Alertmanager"
+logger=ngalert.state.manager t=2025-08-05T20:12:13.983532163+07:00 level=info msg="Warming state cache for startup"
+logger=provisioning.dashboard t=2025-08-05T20:12:13.984950703+07:00 level=info msg="starting to provision dashboards"
+logger=provisioning.dashboard t=2025-08-05T20:12:13.985011822+07:00 level=info msg="finished to provision dashboards"
+logger=http.server t=2025-08-05T20:12:13.98726964+07:00 level=info msg="HTTP Server Listen" address=[::]:3000 protocol=http subUrl= socket=
+logger=ngalert.state.manager t=2025-08-05T20:12:14.032417344+07:00 level=info msg="State cache has been initialized" states=0 duration=48.889297ms
+logger=ngalert.scheduler t=2025-08-05T20:12:14.032572603+07:00 level=info msg="Starting scheduler" tickInterval=10s maxAttempts=1
+logger=ticker t=2025-08-05T20:12:14.032651431+07:00 level=info msg=starting first_tick=2025-08-05T20:12:20+07:00
+logger=plugins.update.checker t=2025-08-05T20:12:14.253142024+07:00 level=info msg="Update check succeeded" duration=269.724175ms
+logger=grafana.update.checker t=2025-08-05T20:12:14.254841556+07:00 level=info msg="Update check succeeded" duration=271.192464ms
+logger=grafana-apiserver t=2025-08-05T20:12:14.298875879+07:00 level=info msg="Adding GroupVersion playlist.grafana.app v0alpha1 to ResourceManager"
+logger=grafana-apiserver t=2025-08-05T20:12:14.299313448+07:00 level=info msg="Adding GroupVersion featuretoggle.grafana.app v0alpha1 to ResourceManager"
+logger=grafana-apiserver t=2025-08-05T20:12:14.300181908+07:00 level=info msg="Adding GroupVersion iam.grafana.app v0alpha1 to ResourceManager"
+logger=context userId=1 orgId=1 uname=admin t=2025-08-05T20:12:14.509280645+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=-1 remote_addr=127.0.0.1 time_ms=13 duration=13.096835ms size=0 referer= handler=/api/live/ws status_source=server
+logger=context userId=1 orgId=1 uname=admin t=2025-08-05T20:12:23.797637875+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=-1 remote_addr=127.0.0.1 time_ms=3 duration=3.477386ms size=0 referer= handler=/api/live/ws status_source=server
+logger=infra.usagestats t=2025-08-05T20:12:49.987168118+07:00 level=info msg="Usage stats are ready to report"
+logger=server t=2025-08-05T20:16:41.555073232+07:00 level=info msg="Shutdown started" reason="System signal: interrupt"
+logger=grafana-apiserver t=2025-08-05T20:16:41.555360608+07:00 level=info msg="StorageObjectCountTracker pruner is exiting"
+logger=tracing t=2025-08-05T20:16:41.555406131+07:00 level=info msg="Closing tracing"
+logger=ticker t=2025-08-05T20:16:41.555467225+07:00 level=info msg=stopped last_tick=2025-08-05T20:16:40+07:00
+logger=plugin.hamedkarbasi93-kafka-datasource t=2025-08-05T20:16:41.556742394+07:00 level=info msg="plugin process exited" plugin=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/data/plugins/hamedkarbasi93-kafka-datasource/gpx_kafka-datasource_linux_amd64 id=114142
+logger=settings t=2025-08-05T22:10:34.749557937+07:00 level=info msg="Starting Grafana" version=11.3.0 commit=d9455ff7db73b694db7d412e49a68bec767f2b5a branch=HEAD compiled=2025-08-05T22:10:34+07:00
+logger=settings t=2025-08-05T22:10:34.749804967+07:00 level=info msg="Config loaded from" file=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/conf/defaults.ini
+logger=settings t=2025-08-05T22:10:34.749834329+07:00 level=info msg=Target target=[all]
+logger=settings t=2025-08-05T22:10:34.74985711+07:00 level=info msg="Path Home" path=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0
+logger=settings t=2025-08-05T22:10:34.749880144+07:00 level=info msg="Path Data" path=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/data
+logger=settings t=2025-08-05T22:10:34.749908092+07:00 level=info msg="Path Logs" path=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/data/log
+logger=settings t=2025-08-05T22:10:34.749934544+07:00 level=info msg="Path Plugins" path=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/data/plugins
+logger=settings t=2025-08-05T22:10:34.749956018+07:00 level=info msg="Path Provisioning" path=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/conf/provisioning
+logger=settings t=2025-08-05T22:10:34.749977432+07:00 level=info msg="App mode production"
+logger=featuremgmt t=2025-08-05T22:10:34.750164107+07:00 level=info msg=FeatureToggles exploreMetrics=true lokiMetricDataplane=true formatString=true kubernetesPlaylists=true alertingSimplifiedRouting=true dataplaneFrontendFallback=true cloudWatchCrossAccountQuerying=true managedPluginsInstall=true addFieldFromCalculationStatFunctions=true panelMonitoring=true prometheusConfigOverhaulAuth=true tlsMemcached=true dashboardSceneSolo=true prometheusMetricEncyclopedia=true transformationsVariableSupport=true transformationsRedesign=true angularDeprecationUI=true prometheusAzureOverrideAudience=true alertingInsights=true openSearchBackendFlowEnabled=true promQLScope=true topnav=true lokiStructuredMetadata=true dashgpt=true logsExploreTableVisualisation=true pinNavItems=true logRowsPopoverMenu=true nestedFolders=true logsContextDatasourceUi=true groupToNestedTableTransformation=true cloudWatchRoundUpEndTime=true dashboardSceneForViewers=true cloudWatchNewLabelParsing=true notificationBanner=true logsInfiniteScrolling=true annotationPermissionUpdate=true recordedQueriesMulti=true lokiQueryHints=true publicDashboards=true autoMigrateXYChartPanel=true ssoSettingsApi=true alertingNoDataErrorExecution=true awsAsyncQueryCaching=true recoveryThreshold=true correlations=true accessControlOnCall=true publicDashboardsScene=true dashboardScene=true lokiQuerySplitting=true influxdbBackendMigration=true
+logger=sqlstore t=2025-08-05T22:10:34.750234141+07:00 level=info msg="Connecting to DB" dbtype=sqlite3
+logger=sqlstore t=2025-08-05T22:10:34.750288977+07:00 level=warn msg="SQLite database file has broader permissions than it should" path=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/data/grafana.db mode=-rwxrwxrwx expected=-rw-r-----
+logger=migrator t=2025-08-05T22:10:34.754618638+07:00 level=info msg="Locking database"
+logger=migrator t=2025-08-05T22:10:34.754686113+07:00 level=info msg="Starting DB migrations"
+logger=migrator t=2025-08-05T22:10:34.765526259+07:00 level=info msg="migrations completed" performed=0 skipped=704 duration=318.533µs
+logger=migrator t=2025-08-05T22:10:34.765992884+07:00 level=info msg="Unlocking database"
+logger=licensing t=2025-08-05T22:10:34.766427018+07:00 level=info msg="Validated license token" appURL=http://localhost:3000/ source=disk status=NotFound
+logger=secrets t=2025-08-05T22:10:34.766474327+07:00 level=info msg="Envelope encryption state" enabled=true currentprovider=secretKey.v1
+logger=plugin.angulardetectorsprovider.dynamic t=2025-08-05T22:10:34.796358368+07:00 level=info msg="Restored cache from database" duration=363.821µs
+logger=plugin.store t=2025-08-05T22:10:34.796803571+07:00 level=info msg="Loading plugins..."
+logger=plugins.registration t=2025-08-05T22:10:34.867817688+07:00 level=error msg="Could not register plugin" pluginId=xychart error="plugin xychart is already registered"
+logger=plugins.initialization t=2025-08-05T22:10:34.86790702+07:00 level=error msg="Could not initialize plugin" pluginId=xychart error="plugin xychart is already registered"
+logger=plugins.registration t=2025-08-05T22:10:34.886782555+07:00 level=info msg="Plugin registered" pluginId=grafana-lokiexplore-app
+logger=plugins.registration t=2025-08-05T22:10:34.992055062+07:00 level=info msg="Plugin registered" pluginId=hamedkarbasi93-kafka-datasource
+logger=plugin.store t=2025-08-05T22:10:34.992422847+07:00 level=info msg="Plugins loaded" count=56 duration=195.619345ms
+logger=caching.service t=2025-08-05T22:10:34.99441664+07:00 level=info msg="Caching service is disabled"
+logger=query_data t=2025-08-05T22:10:34.997679248+07:00 level=info msg="Query Service initialization"
+logger=live.push_http t=2025-08-05T22:10:35.003351589+07:00 level=info msg="Live Push Gateway initialization"
+logger=ngalert.notifier.alertmanager org=1 t=2025-08-05T22:10:35.006365908+07:00 level=info msg="Applying new configuration to Alertmanager" configHash=d2c56faca6af2a5772ff4253222f7386
+logger=ngalert.state.manager t=2025-08-05T22:10:35.016193375+07:00 level=info msg="Running in alternative execution of Error/NoData mode"
+logger=infra.usagestats.collector t=2025-08-05T22:10:35.01825296+07:00 level=info msg="registering usage stat providers" usageStatsProvidersLen=3
+logger=provisioning.alerting t=2025-08-05T22:10:35.01909477+07:00 level=info msg="starting to provision alerting"
+logger=provisioning.alerting t=2025-08-05T22:10:35.019127894+07:00 level=info msg="finished to provision alerting"
+logger=report t=2025-08-05T22:10:35.019545141+07:00 level=warn msg="Scheduling and sending of reports disabled, SMTP is not configured and enabled. Configure SMTP to enable."
+logger=grafanaStorageLogger t=2025-08-05T22:10:35.01964587+07:00 level=info msg="Storage starting"
+logger=ngalert.state.manager t=2025-08-05T22:10:35.019683508+07:00 level=info msg="Warming state cache for startup"
+logger=ngalert.multiorg.alertmanager t=2025-08-05T22:10:35.019717402+07:00 level=info msg="Starting MultiOrg Alertmanager"
+logger=http.server t=2025-08-05T22:10:35.021731011+07:00 level=info msg="HTTP Server Listen" address=[::]:3000 protocol=http subUrl= socket=
+logger=provisioning.dashboard t=2025-08-05T22:10:35.077005264+07:00 level=info msg="starting to provision dashboards"
+logger=provisioning.dashboard t=2025-08-05T22:10:35.077055975+07:00 level=info msg="finished to provision dashboards"
+logger=ngalert.state.manager t=2025-08-05T22:10:35.086973101+07:00 level=info msg="State cache has been initialized" states=0 duration=67.287054ms
+logger=ngalert.scheduler t=2025-08-05T22:10:35.08705585+07:00 level=info msg="Starting scheduler" tickInterval=10s maxAttempts=1
+logger=ticker t=2025-08-05T22:10:35.08714975+07:00 level=info msg=starting first_tick=2025-08-05T22:10:40+07:00
+logger=grafana-apiserver t=2025-08-05T22:10:35.20814372+07:00 level=info msg="Adding GroupVersion playlist.grafana.app v0alpha1 to ResourceManager"
+logger=grafana-apiserver t=2025-08-05T22:10:35.208843464+07:00 level=info msg="Adding GroupVersion featuretoggle.grafana.app v0alpha1 to ResourceManager"
+logger=grafana-apiserver t=2025-08-05T22:10:35.209973838+07:00 level=info msg="Adding GroupVersion iam.grafana.app v0alpha1 to ResourceManager"
+logger=plugins.update.checker t=2025-08-05T22:10:35.290734436+07:00 level=info msg="Update check succeeded" duration=270.983427ms
+logger=grafana.update.checker t=2025-08-05T22:10:35.294939989+07:00 level=info msg="Update check succeeded" duration=275.141288ms
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:11:10.360465483+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=698.346µs size=105 referer= handler=/api/live/ws status_source=server
+logger=infra.usagestats t=2025-08-05T22:12:04.022058745+07:00 level=info msg="Usage stats are ready to report"
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:12:10.402093748+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=663.186µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:13:10.404668168+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=838.239µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:14:10.40740749+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=758.405µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:15:10.410007917+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=737.248µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:16:10.499119265+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=765.443µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:17:10.612023272+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=880.368µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:18:10.614967822+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=789.844µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:19:10.617858491+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=1 duration=1.000036ms size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:20:10.62071821+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=737.001µs size=105 referer= handler=/api/live/ws status_source=server
+logger=cleanup t=2025-08-05T22:20:35.061112595+07:00 level=info msg="Completed cleanup jobs" duration=40.43302ms
+logger=plugins.update.checker t=2025-08-05T22:20:35.624333967+07:00 level=info msg="Update check succeeded" duration=333.216944ms
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:21:10.624463372+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=1 duration=1.283902ms size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:22:12.669520882+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=745.654µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:23:12.672063052+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=859.285µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:24:19.773198724+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=858.747µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:25:19.776227716+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=634.011µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:26:19.887552452+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=651.998µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:27:19.890181189+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=628.906µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:28:26.952009956+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=591.298µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:29:26.954346317+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=619.165µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:30:27.010844257+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=830.545µs size=105 referer= handler=/api/live/ws status_source=server
+logger=cleanup t=2025-08-05T22:30:35.095866553+07:00 level=info msg="Completed cleanup jobs" duration=76.007626ms
+logger=plugins.update.checker t=2025-08-05T22:30:35.548177381+07:00 level=info msg="Update check succeeded" duration=256.681958ms
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:31:27.013842025+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=883.777µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:32:27.016674285+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=624.126µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:33:30.104691588+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=748.154µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:34:30.108153566+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=608.687µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:35:31.520859441+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=467.721µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:36:31.908957757+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=789.648µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:37:31.91251845+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=1 duration=1.198213ms size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:38:31.915811794+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=696.93µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:39:32.140075825+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=737.919µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:40:32.81092858+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=716.15µs size=105 referer= handler=/api/live/ws status_source=server
+logger=cleanup t=2025-08-05T22:40:35.033215013+07:00 level=info msg="Completed cleanup jobs" duration=12.930121ms
+logger=plugins.update.checker t=2025-08-05T22:40:35.814875415+07:00 level=info msg="Update check succeeded" duration=523.43921ms
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:41:33.817143248+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=1 duration=1.028342ms size=105 referer= handler=/api/live/ws status_source=server
+logger=infra.usagestats t=2025-08-05T22:42:04.025663839+07:00 level=info msg="Usage stats are ready to report"
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:42:34.243821073+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=939.425µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:43:39.497917453+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=920.242µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:44:39.796080656+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=891.442µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:45:39.798828168+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=658.238µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:46:39.855351477+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=581.806µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:47:39.85807895+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=620.8µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:48:39.889020357+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=792.62µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:49:42.831656497+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=768.592µs size=105 referer= handler=/api/live/ws status_source=server
+logger=cleanup t=2025-08-05T22:50:35.104491467+07:00 level=info msg="Completed cleanup jobs" duration=84.509056ms
+logger=plugins.update.checker t=2025-08-05T22:50:35.562213505+07:00 level=info msg="Update check succeeded" duration=271.103899ms
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:50:42.859809141+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=783.168µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:51:42.886583869+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=1 duration=1.006692ms size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:52:44.1235864+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=857.696µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:53:44.126963+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=666.713µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:54:44.130132036+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=954.572µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:55:44.13312307+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=706.847µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:56:44.420883778+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=846.022µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:57:44.532182595+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=860.286µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:58:45.287410114+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=662.855µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T22:59:49.30992221+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=710.829µs size=105 referer= handler=/api/live/ws status_source=server
+logger=cleanup t=2025-08-05T23:00:35.034328457+07:00 level=info msg="Completed cleanup jobs" duration=14.479459ms
+logger=plugins.update.checker t=2025-08-05T23:00:35.581511344+07:00 level=info msg="Update check succeeded" duration=290.166007ms
+logger=context userId=0 orgId=0 uname= t=2025-08-05T23:00:49.370147731+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=713.951µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T23:01:49.373222164+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=611.328µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T23:02:49.3767149+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=649.76µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T23:03:58.556969583+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=818.031µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T23:05:04.589983018+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=632.66µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T23:06:04.815091965+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=1 duration=1.187724ms size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T23:07:04.818500753+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=657.908µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T23:08:04.92802944+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=970.068µs size=105 referer= handler=/api/live/ws status_source=server
+logger=context userId=0 orgId=0 uname= t=2025-08-05T23:09:04.973013908+07:00 level=info msg="Request Completed" method=GET path=/api/live/ws status=401 remote_addr=127.0.0.1 time_ms=0 duration=631.91µs size=105 referer= handler=/api/live/ws status_source=server
+logger=server t=2025-08-05T23:09:22.424998323+07:00 level=info msg="Shutdown started" reason="System signal: interrupt"
+logger=ticker t=2025-08-05T23:09:22.425261255+07:00 level=info msg=stopped last_tick=2025-08-05T23:09:20+07:00
+logger=tracing t=2025-08-05T23:09:22.425302643+07:00 level=info msg="Closing tracing"
+logger=grafana-apiserver t=2025-08-05T23:09:22.425348861+07:00 level=info msg="StorageObjectCountTracker pruner is exiting"
+logger=plugin.hamedkarbasi93-kafka-datasource t=2025-08-05T23:09:22.426888191+07:00 level=info msg="plugin process exited" plugin=/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/PromsketchServer/grafana-v11.3.0/data/plugins/hamedkarbasi93-kafka-datasource/gpx_kafka-datasource_linux_amd64 id=211158
