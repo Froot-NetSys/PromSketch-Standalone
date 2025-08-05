@@ -1,14 +1,17 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"log"
 	"math"
 	"net/http"
 	"os"
 	"strconv"
+	"strings"
 	"sync"
 	"sync/atomic"
+	"text/template"
 	"time"
 
 	_ "net/http/pprof"
@@ -70,6 +73,134 @@ func init() {
 	prometheus.MustRegister(queryResults)
 }
 
+var (
+	machineToPort   sync.Map // maps machineID (string) to port index (int)
+	portServers     []*PortServer
+	portMutex       sync.Mutex
+	startPort       = 7100
+	machinesPerPort = 200
+)
+
+type PortServer struct {
+	Port     int
+	Registry *prometheus.Registry
+	Metrics  *prometheus.GaugeVec
+}
+
+func NewPortServer(port int) *PortServer {
+	reg := prometheus.NewRegistry()
+	gauge := prometheus.NewGaugeVec(
+		prometheus.GaugeOpts{
+			Name: "promsketch_port_ingested_metrics_total",
+			Help: "Total number of ingested metrics (partitioned)",
+		},
+		[]string{"metric", "machineid"},
+	)
+	reg.MustRegister(gauge)
+
+	return &PortServer{
+		Port:     port,
+		Registry: reg,
+		Metrics:  gauge,
+	}
+}
+
+func (ps *PortServer) Start() {
+	mux := http.NewServeMux()
+	mux.Handle("/metrics", promhttp.HandlerFor(ps.Registry, promhttp.HandlerOpts{}))
+
+	addr := fmt.Sprintf(":%d", ps.Port)
+	go func() {
+		log.Printf("[PORT SERVER] Serving /metrics on port %d", ps.Port)
+		log.Fatal(http.ListenAndServe(addr, mux))
+	}()
+}
+
+func getOrCreatePortIndex(machineID string) int {
+	numStr := strings.TrimPrefix(machineID, "machine_")
+	idx, err := strconv.Atoi(numStr)
+	if err != nil {
+		log.Printf("[PORT ERROR] Failed to parse machine index from: %s", machineID)
+		return 0 // fallback
+	}
+
+	portIndex := idx / machinesPerPort
+
+	// Pastikan portServers[portIndex] tersedia
+	portMutex.Lock()
+	defer portMutex.Unlock()
+
+	for len(portServers) <= portIndex {
+		port := startPort + len(portServers)
+		server := NewPortServer(port)
+		server.Start()
+		portServers = append(portServers, server)
+		log.Printf("[PORT SERVER] Initialized /metrics on port %d", port)
+	}
+
+	return portIndex
+}
+
+// ============================
+// Fungsi untuk generate prometheus config
+// ============================
+const scrapeSectionTemplate = `  - job_name: "promsketch_raw_groups"
+    static_configs:
+      - targets:
+{{- range .Ports }}
+          - "localhost:{{ . }}"
+{{- end }}
+`
+
+type PromConfigData struct {
+	Ports []int
+}
+
+func UpdatePrometheusYML(path string) error {
+	var ports []int
+	for _, ps := range portServers {
+		ports = append(ports, ps.Port)
+	}
+
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return err
+	}
+
+	lines := strings.Split(string(data), "\n")
+	start, end := -1, -1
+	for i, line := range lines {
+		if strings.Contains(line, "job_name: \"promsketch_raw_groups\"") {
+			start = i
+		}
+		if start != -1 && strings.HasPrefix(line, "  - job_name:") && i > start {
+			end = i
+			break
+		}
+	}
+	if start != -1 && end == -1 {
+		end = len(lines)
+	}
+
+	var buf bytes.Buffer
+	tmpl := template.Must(template.New("scrape").Parse(scrapeSectionTemplate))
+	err = tmpl.Execute(&buf, PromConfigData{Ports: ports})
+	if err != nil {
+		return err
+	}
+
+	var newLines []string
+	if start != -1 {
+		newLines = append(lines[:start], strings.Split(buf.String(), "\n")...)
+		newLines = append(newLines, lines[end:]...)
+	} else {
+		newLines = append(lines, "")
+		newLines = append(newLines, strings.Split(buf.String(), "\n")...)
+	}
+
+	return os.WriteFile(path, []byte(strings.Join(newLines, "\n")), 0644)
+}
+
 func main() {
 	go logIngestionRate()
 
@@ -95,6 +226,12 @@ func main() {
 		log.Fatalf("Failed to run server: %v", err)
 	}
 
+	ymlPath := "./prometheus/documentation/examples/prometheus.yml"
+	if err := UpdatePrometheusYML(ymlPath); err != nil {
+		log.Printf("❌ Failed to update Prometheus config: %v", err)
+	} else {
+		log.Printf("✅ Updated Prometheus config at %s", ymlPath)
+	}
 }
 
 // handleDebugState akan memeriksa 10000 time series pertama
@@ -204,7 +341,7 @@ func handleIngest(c *gin.Context) {
 			defer wg.Done()
 			defer func() { <-sem }() // release slot
 
-			log.Printf("[INGEST] name=%s labels=%v value=%.2f", metric.Name, metric.Labels, metric.Value)
+			// log.Printf("[INGEST] name=%s labels=%v value=%.2f", metric.Name, metric.Labels, metric.Value)
 
 			lsetBuilder := labels.NewBuilder(labels.Labels{})
 			for k, v := range metric.Labels {
@@ -213,20 +350,20 @@ func handleIngest(c *gin.Context) {
 			lsetBuilder.Set(labels.MetricName, metric.Name)
 			lset := lsetBuilder.Labels()
 
-			log.Printf("[INGEST] Inserting to sketch: name=%s labels=%v ts=%d value=%.2f", metric.Name, metric.Labels, payload.Timestamp, metric.Value)
+			// log.Printf("[INGEST] Inserting to sketch: name=%s labels=%v ts=%d value=%.2f", metric.Name, metric.Labels, payload.Timestamp, metric.Value)
 
 			if err := ps.SketchInsert(lset, payload.Timestamp, metric.Value); err == nil {
 				atomic.AddInt64(&totalIngested, 1)
-
 				ingestedMetrics.WithLabelValues(metric.Name, metric.Labels["machineid"]).Set(metric.Value)
 
-				// // Push raw metric to Prometheus
-				// labels := map[string]string{}
-				// for k, v := range metric.Labels {
-				// 	labels[k] = v
-				// }
-				// labels["__name__"] = metric.Name
-				// pushSyntheticResult(metric.Name, labels, metric.Value, payload.Timestamp)
+				// Tambahan sinkronisasi ke registry per port
+				machineID := metric.Labels["machineid"]
+				if machineID != "" {
+					portIndex := getOrCreatePortIndex(machineID)
+					if portIndex < len(portServers) {
+						portServers[portIndex].Metrics.WithLabelValues(metric.Name, machineID).Set(metric.Value)
+					}
+				}
 			}
 
 		}(metric)
