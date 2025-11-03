@@ -1,4 +1,4 @@
-# PromSketch Server – Setup and Testing Guide
+# PromSketch Standalone Server – Setup and Testing Guide
 
 This repository contains the implementation of **PromSketch**, a sketch-based time series processing server, along with supporting tools for ingestion, query testing, visualization, and performance benchmarking.
 
@@ -124,4 +124,5 @@ You can benchmark ingestion and query execution as follows:
 * **Main server (7000)** is responsible for sketch aggregation and query execution. It must be active for queries to run.
 
 ---
+
 
