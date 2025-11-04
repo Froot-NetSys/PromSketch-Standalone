@@ -1,2 +1,0 @@
-Sample_Size,Query_Type,Evaluation_Time_mean,Evaluation_Time_std,Num_Queries
-10,quantile,0.0020802562899552867,0.0017436071265399297,100

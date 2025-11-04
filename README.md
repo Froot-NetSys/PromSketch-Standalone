@@ -1,3 +1,18 @@
+# Initial Environment Setup
+
+1. Create and activate a Python virtual environment, then install the required dependencies.
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+
+   pip install prometheus-client
+   pip install numpy
+   pip install pyyaml
+   pip install requests
+   pip install aiohttp
+   ```
+2. Download the CAIDA dataset and use `ExporterStarter/datasets/pcap_process.py` to convert it into `.txt` format.
+
 # PromSketch Standalone Server – Setup and Testing Guide
 
 This repository contains the implementation of **PromSketch**, a sketch-based time series processing server, along with supporting tools for ingestion, query testing, visualization, and performance benchmarking.
@@ -43,7 +58,7 @@ python3 ExportManager.py \
   --waiteval=60
 
 # Start Custom Ingester
-python3 custom_ingester_noDB_test3_dynamic.py --config=num_samples_config.yml
+python3 custom_ingester.py --config=num_samples_config.yml
 ```
 
 ---

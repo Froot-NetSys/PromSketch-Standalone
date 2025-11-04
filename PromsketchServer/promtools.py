@@ -81,7 +81,7 @@ def query_promsketch(query_str):
 
         if response.status_code == 202:
             message = response.json().get("message")
-            print(f"[PROMSKETCH] Sketch belum siap: {message}")
+            print(f"[PROMSKETCH] Sketch not ready: {message}")
             return float("nan"), local_latency_ms, None, None
 
         print(f"[PROMSKETCH] HTTP {response.status_code}: {response.text}")

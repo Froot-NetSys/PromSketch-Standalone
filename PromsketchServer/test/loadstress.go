@@ -105,7 +105,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/SieDeta/promsketch_std/promsketch"
+	"github.com/Froot-NetSys/Promsketch-Standalone/promsketch"
 
 	"github.com/zzylol/prometheus-sketch-VLDB/prometheus-sketches/model/labels"
 )

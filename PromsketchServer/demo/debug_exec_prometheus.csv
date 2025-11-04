@@ -1,2 +1,0 @@
-when_iso,expr,count_expr,count,win_start_ms,win_end_ms
-2025-09-04T15:00:06.142880+00:00,"avg_over_time(fake_machine_metric{machineid=""machine_0""}[300s])","count_over_time(fake_machine_metric{machineid=""machine_0""}[300s])",,1756997706142,1756998006142

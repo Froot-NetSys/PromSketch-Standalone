@@ -21,7 +21,7 @@ import (
 
 	_ "net/http/pprof"
 
-	"github.com/SieDeta/promsketch_std/promsketch"
+	"github.com/Froot-NetSys/Promsketch-Standalone/promsketch"
 	"github.com/gin-gonic/gin"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"

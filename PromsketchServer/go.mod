@@ -1,4 +1,4 @@
-module github.com/SieDeta/promsketch_std
+module github.com/Froot-NetSys/Promsketch-Standalone
 
 go 1.24.5
 
@@ -6,7 +6,6 @@ require (
 	github.com/DataDog/sketches-go v1.4.7
 	github.com/OneOfOne/xxhash v1.2.8
 	github.com/RoaringBitmap/roaring/v2 v2.5.0
-	github.com/SieDeta/prometheus-parser v0.0.0-20250805171923-cbbdff918170
 	github.com/cespare/xxhash v1.1.0
 	github.com/cespare/xxhash/v2 v2.3.0
 	github.com/gin-gonic/gin v1.10.1
