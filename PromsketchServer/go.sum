@@ -60,8 +60,6 @@ github.com/OneOfOne/xxhash v1.2.8 h1:31czK/TI9sNkxIKfaUfGlU47BAxQ0ztGgd9vPyqimf8
 github.com/OneOfOne/xxhash v1.2.8/go.mod h1:eZbhyaAYD41SGSSsnmcpxVoRiQ/MPUTjUdIIOT9Um7Q=
 github.com/RoaringBitmap/roaring/v2 v2.5.0 h1:TJ45qCM7D7fIEBwKd9zhoR0/S1egfnSSIzLU1e1eYLY=
 github.com/RoaringBitmap/roaring/v2 v2.5.0/go.mod h1:FiJcsfkGje/nZBZgCu0ZxCPOKD/hVXDS2dXi7/eUFE0=
-github.com/SieDeta/prometheus-parser v0.0.0-20250805171923-cbbdff918170 h1:3STNV8UJf0OpWm0bS33zVNi+FGg9QU0pnZfZHKqxX6c=
-github.com/SieDeta/prometheus-parser v0.0.0-20250805171923-cbbdff918170/go.mod h1:Eq0HyXtbld1q0GVYR5fyOEY9fJDVtKdekn7YxU8AnFw=
 github.com/VictoriaMetrics/easyproto v0.1.4 h1:r8cNvo8o6sR4QShBXQd1bKw/VVLSQma/V2KhTBPf+Sc=
 github.com/VictoriaMetrics/easyproto v0.1.4/go.mod h1:QlGlzaJnDfFd8Lk6Ci/fuLxfTo3/GThPs2KH23mv710=
 github.com/VictoriaMetrics/fastcache v1.12.2 h1:N0y9ASrJ0F6h0QaC3o6uJb3NIZ9VKLjCM7NQbSmF7WI=

@@ -1,3 +1,5 @@
+// Stress test harness that hammers PromSketch inserts with synthetic data.
+
 // package main
 
 // import (
@@ -109,7 +111,7 @@ import (
 )
 
 const (
-	numClients      = 100 // Jumlah goroutine paralel
+	numClients      = 100 // Number of parallel goroutines
 	insertPerClient = 10000
 )
 
@@ -143,13 +145,17 @@ func main() {
 	fmt.Println("Initializing sketch system...")
 	ps = promsketch.NewPromSketches()
 
-	// OPTIONAL: Buat sketch-nya dulu di awal (jika belum)
+	// STRESS TEST OVERVIEW:
+	// - Pre-create 1,000 logical series with four sketch types.
+	// - Launch 100 parallel goroutines; each issues 10,000 inserts.
+	// - Measures server robustness by flooding SketchInsertDefinedRules with concurrent writes.
+	// OPTIONAL: Proactively create sketches ahead of time (if they don’t exist yet)
 	fmt.Println("Creating sketches for initial series...")
 	for i := 0; i < 1000; i++ {
 		lset := generateLabel(i)
 		series, _, _ := ps.GetOrCreateWrapper(lset.Hash(), lset)
 
-		// Buat semua sketch di awal
+		// Pre-create every sketch variant so inserts exercise populated structures
 		sketchTypes := []promsketch.SketchType{
 			promsketch.EHUniv,
 			promsketch.EHCount,

@@ -17,7 +17,7 @@ High‑level flow: **exporters → ingester → ports 71xx (/ingest) → sketche
 
 ## 2) Prerequisites
 
-* Go ≥ 1.20 (to run the server).
+* Go ≥ 1.25 (to run the server).
 * Python ≥ 3.10 with: `aiohttp`, `pyyaml`, `prometheus_client`, `streamlit`, `pandas`, `requests`.
 * (Optional) Prometheus running at `http://localhost:9090` for side‑by‑side comparisons.
 
@@ -79,7 +79,7 @@ In the UI you’ll see:
 
 * **Latency** charts (local Prometheus, local PromSketch, server PromSketch).
 * **Metric value** charts for each expression.
-* A **cost panel** (toy model): estimated insert/query/storage costs driven by Prometheus & PromSketch counters.
+* **Cost panel** estimated insert/query/storage costs driven by Prometheus & PromSketch counters.
 
 ---
 
@@ -151,7 +151,7 @@ Example **rules** file for batch queries (optional): `promsketch-rules.yml` also
   * `PROMSKETCH_METRICS_URL` (default `http://localhost:7000/metrics`)
 * **UI & buffers**: `REFRESH_SEC`, `HISTORY_LEN`.
 * **Query list**: `QUERY_EXPRS` (extend/modify as needed).
-* **Cost model (toy)**: `INSERT_COST_PER_MILLION`, `QUERY_COST_PER_MILLION`, `STORAGE_COST_PER_GB_HOUR`, `ASSUMED_BYTES_PER_SAMPLE`.
+* **Cost model**: `INSERT_COST_PER_MILLION`, `QUERY_COST_PER_MILLION`, `STORAGE_COST_PER_GB_HOUR`, `ASSUMED_BYTES_PER_SAMPLE`.
 * **Counters feeding the cost panel**: from Prometheus (e.g., `prometheus_tsdb_head_samples_appended_total`, `prometheus_engine_query_samples_total`) and from PromSketch (e.g., total ingested & `sketch_query_samples_total`).
 
 ### b) Ingester — `custom_ingester_noDB_test3_dynamic.py`

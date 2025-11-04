@@ -1,27 +1,44 @@
-import yaml
 import asyncio
-import aiohttp
-import time
-import sys
-import json
 import os
-from prometheus_client.parser import text_fd_to_metric_families
+import sys
+import time
+from collections import defaultdict
 from io import StringIO
+from urllib.parse import urlparse
 
-PROMSKETCH_BASE_PORT = 7100
-MACHINES_PER_PORT = 200          # samakan dengan server
-PROMSKETCH_CONTROL_URL = "http://localhost:7000"
-PORT_BLOCKLIST = {7000}          # <— NEW: jangan pernah kirim ke 7000
+import aiohttp
+import yaml
+from prometheus_client.parser import text_fd_to_metric_families
+
+def _parse_port_blocklist(raw: str) -> set[int]:
+    ports: set[int] = set()
+    for token in raw.split(","):
+        token = token.strip()
+        if not token:
+            continue
+        try:
+            ports.add(int(token))
+        except ValueError:
+            print(f"[WARN] Ignoring invalid port in PROMSKETCH_PORT_BLOCKLIST: {token}")
+    return ports
+
+
+PROMSKETCH_CONTROL_URL = os.environ.get("PROMSKETCH_CONTROL_URL", "http://localhost:7000")
+PROMSKETCH_BASE_PORT = int(os.environ.get("PROMSKETCH_BASE_PORT", "7100"))
+MACHINES_PER_PORT = int(os.environ.get("PROMSKETCH_MACHINES_PER_PORT", "200"))
+METRICS_PER_TARGET_HINT = int(os.environ.get("PROMSKETCH_METRICS_PER_TARGET", "1250"))
+PORT_BLOCKLIST = _parse_port_blocklist(os.environ.get("PROMSKETCH_PORT_BLOCKLIST", "7000"))
+BATCH_SEND_INTERVAL_SECONDS = float(os.environ.get("PROMSKETCH_BATCH_INTERVAL_SECONDS", "0.5"))
+POST_TIMEOUT_SECONDS = float(os.environ.get("PROMSKETCH_POST_TIMEOUT_SECONDS", "8"))
+REGISTER_SLEEP_SECONDS = float(os.environ.get("PROMSKETCH_REGISTER_SLEEP_SECONDS", "0.5"))
+SCRAPE_TIMEOUT_SECONDS = float(os.environ.get("PROMSKETCH_SCRAPE_TIMEOUT_SECONDS", "5"))
+
+_CONTROL_HOST = urlparse(PROMSKETCH_CONTROL_URL).hostname or "localhost"
 
 total_sent = 0
 start_time = time.time()
 
-metrics_per_target = 1250
-BATCH_SEND_INTERVAL_SECONDS = 0.5
-POST_TIMEOUT_SECONDS = 8         # <— NEW: timeout kirim lebih lega
-REGISTER_SLEEP_SECONDS = 0.5     # <— NEW: beri jeda setelah register
-
-#  Ingester memetakan machineid → port memakai range ukuran MACHINES_PER_PORT:
+# Map machineid → port using MACHINES_PER_PORT ranges
 def machine_to_port(machineid: str) -> int:
     # machineid format: "machine_0", "machine_1", ..., "machine_199"
     try:
@@ -31,11 +48,11 @@ def machine_to_port(machineid: str) -> int:
     port_index = idx // MACHINES_PER_PORT
     return PROMSKETCH_BASE_PORT + port_index
 
-# ingester baca num_samples_config.yml, hitung estimasi total time-series, lalu mendaftar ke main server :7000/register_config
+# Read num_samples_config.yml, estimate total time series, then register with the main server at :7000/register_config
 async def register_capacity(config_data):
     targets = config_data["scrape_configs"][0]["static_configs"][0]["targets"]
     num_targets = len(targets)
-    total_ts_est = num_targets * metrics_per_target
+    total_ts_est = num_targets * METRICS_PER_TARGET_HINT
     payload = {
         "num_targets": num_targets,
         "estimated_timeseries": total_ts_est,
@@ -50,11 +67,11 @@ async def register_capacity(config_data):
         except Exception as e:
             print("[REGISTER_CONFIG ERROR]", e)
 
-# Ingester membaca daftar targets dari num_samples_config.yml, lalu HTTP GET ke http://<target>/metrics dan parse format teks Prometheus menjadi list sample
+# Fetch metrics from targets listed in num_samples_config.yml via HTTP and parse Prometheus text format into sample lists
 async def fetch_metrics(session, target):
     metrics = []
     try:
-        async with session.get(f"http://{target}/metrics", timeout=5) as response:
+        async with session.get(f"http://{target}/metrics", timeout=SCRAPE_TIMEOUT_SECONDS) as response:
             if response.status != 200:
                 print(f"[ERROR] Failed to scrape {target}: {response.status}")
                 return metrics
@@ -103,7 +120,7 @@ async def post_with_retry(session, url, payload, retries=2):
             await asyncio.sleep(0.2 * (attempt + 1))
     raise last_err
 
-# ... kode sebelum ini tetap ...
+# ... remainder of the earlier code stays the same ...
 
 async def ingest_loop(config_file):
     global total_sent
@@ -112,17 +129,16 @@ async def ingest_loop(config_file):
         with open(config_file, "r") as f:
             config_data = yaml.safe_load(f)
         await register_capacity(config_data)
-        await asyncio.sleep(REGISTER_SLEEP_SECONDS)  # <— NEW: beri waktu port 71xx start
+        await asyncio.sleep(REGISTER_SLEEP_SECONDS)  # <— NEW: give 71xx ports time to start
     except Exception as e:
         print(f"Error loading config file: {e}")
         sys.exit(1)
 
     targets = config_data["scrape_configs"][0]["static_configs"][0]["targets"]
     num_targets = len(targets)
-    # MAX_BATCH_SIZE = num_targets * metrics_per_target
+    # MAX_BATCH_SIZE = num_targets * METRICS_PER_TARGET_HINT
 
-    print(f"[CONFIG] metrics_per_target = {metrics_per_target}")
-    # print(f"[CONFIG] MAX_BATCH_SIZE = {MAX_BATCH_SIZE}")
+    print(f"[CONFIG] metrics_per_target_hint = {METRICS_PER_TARGET_HINT}")
     print(f"[ROUTING] BASE_PORT={PROMSKETCH_BASE_PORT} MACHINES_PER_PORT={MACHINES_PER_PORT}")
 
     scrape_interval_str = config_data["scrape_configs"][0].get("scrape_interval", "10s")
@@ -146,18 +162,19 @@ async def ingest_loop(config_file):
             for metric_list in results:
                 metrics_buffer.extend(metric_list)
 
-            # Langsung kirim semua metrics hasil fetch setiap interval
+            # Immediately send every metric fetched during this interval
             if metrics_buffer:
-                buckets = {}
+                buckets = defaultdict(list)
                 for m in metrics_buffer:
                     mid = m["Labels"].get("machineid", "machine_0")
                     port = machine_to_port(mid)
                     if port in PORT_BLOCKLIST:
-                        port = PROMSKETCH_BASE_PORT
-                    buckets.setdefault(port, []).append(m)
+                        print(f"[SKIP] machineid={mid} resolved to blocked port {port}")
+                        continue
+                    buckets[port].append(m)
 
                 for port, items in sorted(buckets.items()):
-                    url = f"http://localhost:{port}/ingest"
+                    url = f"http://{_CONTROL_HOST}:{port}/ingest"
                     payload = {"Timestamp": current_scrape_time, "Metrics": items}
                     try:
                         status, body = await post_with_retry(session, url, payload, retries=2)

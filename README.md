@@ -34,7 +34,7 @@ Inside `ExporterStarter/`, run the following to generate and ingest synthetic da
 cd ExporterStarter/
 
 # Start Export Manager
-ython3 ExportManager.py \
+python3 ExportManager.py \
   --config=num_samples_config.yml \
   --targets=8 \
   --timeseries=10000 \

@@ -13,9 +13,9 @@ PROMETHEUS_QUERY_URL = "http://localhost:9090/api/v1/query"
 PROMSKETCH_QUERY_URL = "http://localhost:7000/parse?q="
 
 REFRESH_SEC = 2
-HISTORY_LEN = 120  # simpan 120 titik (sliding window)
+HISTORY_LEN = 120  # keep 120 points (sliding window)
 
-# --- daftar ekspresi yang dibandingkan (pakai PromQL yang sama di kedua sisi) ---
+# --- list of expressions being compared (use the same PromQL on both sides) ---
 QUERY_EXPRS = {
     "0.5-Quantile": 'quantile_over_time(0.5, fake_machine_metric{machineid="machine_0"}[10000s])',
     "0.9-Quantile": 'quantile_over_time(0.9, fake_machine_metric{machineid="machine_0"}[10000s])',
@@ -85,10 +85,10 @@ def prune_history(conn, keep_hours=48):
     conn.execute("DELETE FROM latency_hist WHERE ts < ?", (cutoff,))
     conn.commit()
 
-# NEW: preload history dari SQLite ke deque supaya chart tidak kosong saat awal
+# NEW: preload history from SQLite into the deques so the charts are populated on startup
 def preload_history(conn):
     try:
-        # per-metrik
+        # per metric
         for name in QUERY_EXPRS.keys():
             rows = pd.read_sql_query(
                 "SELECT ts, prom, sketch FROM values_hist WHERE metric=? ORDER BY ts DESC LIMIT ?",
@@ -119,7 +119,7 @@ def preload_history(conn):
                     float(r["sketch_server_ms"]) if pd.notna(r["sketch_server_ms"]) else None,
                 )
     except Exception as e:
-        st.warning(f"Gagal preload history: {e}")
+        st.warning(f"Failed to preload history: {e}")
 
 # --- helpers ---
 def query_prometheus(expr: str):
@@ -153,7 +153,7 @@ def query_promsketch(expr: str):
                 first = results[0]
                 val = first.get("value")
                 ts = first.get("timestamp")
-                # opsional: tampilkan info singkat untuk 1 query terakhir
+                # optional: display a brief summary for the most recent query
                 st.info(
                     f"PromSketch value: {val} @ {ts} | [LOCAL] {local_latency_ms:.2f} ms "
                     f"[SERVER] {server_latency_ms if server_latency_ms is not None else '-'} ms"
@@ -233,7 +233,7 @@ def make_latency_df() -> pd.DataFrame:
 st.set_page_config(layout="wide")
 st.title("PromSketch vs. Prometheus")
 st.subheader("Live Aggregation Query Results")
-st.caption("Kedua sumber menjalankan ekspresi PromQL yang sama. Garis diperbarui setiap refresh.")
+st.caption("Both sources run the same PromQL expressions. Lines update on each refresh.")
 
 init_state()
 
@@ -247,7 +247,7 @@ st.markdown("### Query Latency (ms)")
 latency_placeholder = st.empty()
 st.markdown("---")
 
-# placeholder chart per-metrik
+# per-metric chart placeholders
 cols_per_row = 2
 names = list(QUERY_EXPRS.keys())
 placeholders = {}
@@ -257,26 +257,26 @@ for row_start in range(0, len(names), cols_per_row):
     for i, name in enumerate(names[row_start:row_start+cols_per_row]):
         with row[i]:
             st.markdown(f"#### {name}")
-            placeholders[name] = st.empty()  # nanti diisi line_chart
+            placeholders[name] = st.empty()  # populated with line_chart instances
 
-# NEW: preload history & initial render sebelum loop
+# NEW: preload history & perform an initial render before entering the loop
 preload_history(conn)
 
-# initial draw untuk setiap metrik jika ada histori
+# initial draw for each metric when history is available
 for name in names:
     df_metric_init = make_dataframe(name)
     if not df_metric_init.empty:
         placeholders[name].line_chart(df_metric_init, use_container_width=True)
 
-# initial draw untuk latency jika ada histori
+# initial draw for latency when history is available
 df_latency_init = make_latency_df()
 if not df_latency_init.empty:
     latency_placeholder.line_chart(df_latency_init, use_container_width=True)
 
-# loop live update
+# live update loop
 while True:
     now = pd.Timestamp.utcnow()
-    # akumulasi latency utk satu siklus refresh
+    # accumulate latency values for this refresh cycle
     prom_local_sum = 0.0
     sketch_local_sum = 0.0
     sketch_server_sum = 0.0
@@ -288,7 +288,7 @@ while True:
         prom_v, prom_local_ms, _ = query_prometheus(expr)
         sketch_v, sketch_local_ms, sketch_server_ms = query_promsketch(expr)
 
-        # akumulasi latency
+        # accumulate latency contributions
         if isfinite(prom_local_ms):
             prom_local_sum += prom_local_ms
             n_prom += 1
@@ -299,33 +299,33 @@ while True:
             sketch_server_sum += sketch_server_ms
             n_sketch_server += 1
 
-        # simpan histori nilai metric (untuk chart on-page)
+        # store metric history values (for on-page charting)
         append_point(name, now, prom_v, sketch_v)
 
-        # render grafik per-metrik
+        # render per-metric chart
         df_metric = make_dataframe(name)
         placeholders[name].line_chart(df_metric, use_container_width=True)
 
-        # persist nilai ke SQLite
+        # persist values to SQLite
         append_value_row(conn, now.isoformat(), name, prom_v, sketch_v)
 
-    # rata-rata latency per refresh
+    # compute average latency for this refresh
     prom_local_avg = (prom_local_sum / n_prom) if n_prom > 0 else float("nan")
     sketch_local_avg = (sketch_local_sum / n_sketch_local) if n_sketch_local > 0 else float("nan")
     sketch_server_avg = (sketch_server_sum / n_sketch_server) if n_sketch_server > 0 else float("nan")
 
-    # simpan & render grafik latency
+    # persist and render latency chart
     append_latency_point(now, prom_local_avg, sketch_local_avg, sketch_server_avg)
     df_latency = make_latency_df()
     latency_placeholder.line_chart(df_latency, use_container_width=True)
 
-    # persist latency averages + commit + prune berkala
+    # persist latency averages + commit + perform periodic pruning
     append_latency_row(conn, now.isoformat(), prom_local_avg, sketch_local_avg, sketch_server_avg)
     conn.commit()
 
-    if (now - st.session_state["last_prune_ts"]).total_seconds() > 300:  # tiap ~5 menit
+    if (now - st.session_state["last_prune_ts"]).total_seconds() > 300:  # roughly every 5 minutes
         prune_history(conn, keep_hours=48)
         st.session_state["last_prune_ts"] = now
 
-    # interval refresh
+    # refresh interval
     time.sleep(REFRESH_SEC)
