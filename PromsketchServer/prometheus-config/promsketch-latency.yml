@@ -1,0 +1,42 @@
+groups:
+  - name: promsketch-inner-quantiles-global
+    interval: 30s
+    rules:
+      # p50 (median)
+      - record: promsketch_engine_query_duration_seconds:p50
+        expr: |
+          histogram_quantile(
+            0.5,
+            sum by (le) (
+              promsketch_engine_query_duration_seconds_bucket{
+                slice="inner_eval",
+                status="success"
+              }
+            )
+          )
+
+      # p90 
+      - record: promsketch_engine_query_duration_seconds:p90
+        expr: |
+          histogram_quantile(
+            0.9,
+            sum by (le) (
+              promsketch_engine_query_duration_seconds_bucket{
+                slice="inner_eval",
+                status="success"
+              }
+            )
+          )
+
+      # p99 
+      - record: promsketch_engine_query_duration_seconds:p99
+        expr: |
+          histogram_quantile(
+            0.99,
+            sum by (le) (
+              promsketch_engine_query_duration_seconds_bucket{
+                slice="inner_eval",
+                status="success"
+              }
+            )
+          )

@@ -42,6 +42,21 @@ type MetricPayload struct {
 	Value  float64           `json:"value"`
 }
 
+type queryResultPayload struct {
+	Rule                      string   `json:"rule"`
+	RuleFile                  string   `json:"rule_file"`
+	Function                  string   `json:"function"`
+	OriginalMetric            string   `json:"original_metric"`
+	MachineID                 string   `json:"machineid"`
+	Quantile                  string   `json:"quantile"`
+	Value                     float64  `json:"value"`
+	Timestamp                 int64    `json:"timestamp"`
+	SketchClientLatencyMS     *float64 `json:"client_latency_ms"`
+	SketchServerLatencyMS     *float64 `json:"server_latency_ms"`
+	PrometheusLatencyMS       *float64 `json:"prometheus_latency_ms"`
+	PrometheusInternalLatency *float64 `json:"prometheus_internal_latency_ms"`
+}
+
 const (
 	machineIDLabel = "machineid"
 )
@@ -94,6 +109,14 @@ var (
 		},
 		[]string{"function", "original_metric", "machineid", "quantile"},
 	)
+
+	ruleLatencyGauge = prometheus.NewGaugeVec(
+		prometheus.GaugeOpts{
+			Name: "promsketch_rule_latency_ms",
+			Help: "Latest observed query latency (ms) per rule/backend as reported by promtools",
+		},
+		[]string{"backend", "rule", "rule_file", "function", "original_metric", "machineid"},
+	)
 )
 var (
 	queryDuration = promauto.NewHistogramVec(
@@ -113,6 +136,15 @@ var (
 		},
 		[]string{"func", "aggregate", "status"},
 	)
+
+	queryStageDuration = promauto.NewHistogramVec(
+		prometheus.HistogramOpts{
+			Name:    "promsketch_engine_query_duration_seconds",
+			Help:    "Breakdown of PromSketch query latency by stage, like Prometheus slices.",
+			Buckets: prometheus.DefBuckets,
+		},
+		[]string{"slice", "func", "aggregate", "status"},
+	)
 )
 
 var maxIngestGoroutines int
@@ -130,6 +162,7 @@ func init() {
 
 	prometheus.MustRegister(ingestedMetrics)
 	prometheus.MustRegister(queryResults)
+	prometheus.MustRegister(ruleLatencyGauge)
 	lastIngestionStats.Store(ingestionSnapshot{})
 
 	cfg.disableInsert = defaults.disableInsert
@@ -729,22 +762,50 @@ func sortedLabelPairs(labelMap map[string]string) ([]string, []string) {
 
 // handleQueryResultIngest receives query results forwarded by promtools.py.
 func handleQueryResultIngest(c *gin.Context) {
-	var result struct {
-		Function       string  `json:"function"`
-		OriginalMetric string  `json:"original_metric"`
-		MachineID      string  `json:"machineid"`
-		Quantile       string  `json:"quantile"`
-		Value          float64 `json:"value"`
-		Timestamp      int64   `json:"timestamp"`
-	}
-
+	var result queryResultPayload
 	if err := c.ShouldBindJSON(&result); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	queryResults.WithLabelValues(result.Function, result.OriginalMetric, result.MachineID, result.Quantile).Set(result.Value)
+
+	recordRuleLatencyMetric("promsketch_client", result.SketchClientLatencyMS, &result)
+	recordRuleLatencyMetric("promsketch_server", result.SketchServerLatencyMS, &result)
+	recordRuleLatencyMetric("prometheus_client", result.PrometheusLatencyMS, &result)
+	recordRuleLatencyMetric("prometheus_internal", result.PrometheusInternalLatency, &result)
+
 	c.JSON(http.StatusOK, gin.H{"status": "success"})
+}
+
+func recordRuleLatencyMetric(backend string, value *float64, payload *queryResultPayload) {
+	if value == nil {
+		return
+	}
+
+	val := *value
+	if math.IsNaN(val) {
+		return
+	}
+
+	ruleName := strings.TrimSpace(payload.Rule)
+	if ruleName == "" {
+		ruleName = fmt.Sprintf("%s:%s", payload.Function, payload.OriginalMetric)
+	}
+
+	ruleFile := strings.TrimSpace(payload.RuleFile)
+	if ruleFile == "" {
+		ruleFile = "unknown"
+	}
+
+	ruleLatencyGauge.WithLabelValues(
+		backend,
+		ruleName,
+		ruleFile,
+		payload.Function,
+		payload.OriginalMetric,
+		payload.MachineID,
+	).Set(val)
 }
 
 func logIngestionRate() {
@@ -840,6 +901,17 @@ func handleParse(c *gin.Context) {
 		return
 	}
 
+	// === GLOBAL QUERY LATENCY (end-to-end, seperti sebelumnya) ===
+	start := time.Now()
+	queryFuncLabel := "unknown"
+	aggLabel := "unknown"
+	statusLabel := "error" // assume error until success
+
+	defer func() {
+		dur := time.Since(start).Seconds()
+		queryDuration.WithLabelValues(queryFuncLabel, aggLabel, statusLabel).Observe(dur)
+	}()
+
 	query := c.Query("q")
 	if query == "" {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Missing query parameter 'q'"})
@@ -860,6 +932,7 @@ func handleParse(c *gin.Context) {
 	}
 
 	funcName := call.Func.Name
+	queryFuncLabel = funcName
 	otherArgs := 0.0
 
 	matrixSelectorArg := call.Args[len(call.Args)-1]
@@ -910,6 +983,11 @@ func handleParse(c *gin.Context) {
 
 	machineID, hasMachineID := labelMap[machineIDLabel]
 	aggregateAllMachines := !hasMachineID || machineID == ""
+	if aggregateAllMachines {
+		aggLabel = "aggregate"
+	} else {
+		aggLabel = "single"
+	}
 
 	lsetBuilder := labels.NewBuilder(labels.Labels{})
 	for k, v := range labelMap {
@@ -920,10 +998,13 @@ func handleParse(c *gin.Context) {
 
 	log.Printf("[QUERY ENGINE] Parsed components: func=%s, lset=%v, otherArgs=%.2f", funcName, lset, otherArgs)
 
+	// === STAGE 1: PREPARE TIME (parse + coverage + window alignment + sample count) ===
+	prepareStart := time.Now()
+
 	// Calculate the requested Prometheus window: [now-range, now].
-	queryDuration := rangeArg.Range
+	requestedPromRange := rangeArg.Range
 	maxt := time.Now().UnixMilli()
-	mint := maxt - queryDuration.Milliseconds()
+	mint := maxt - requestedPromRange.Milliseconds()
 
 	var sketchMin, sketchMax int64
 	if aggregateAllMachines {
@@ -937,10 +1018,10 @@ func handleParse(c *gin.Context) {
 	if sketchMin == -1 || sketchMax == -1 {
 		if aggregateAllMachines {
 			log.Printf("[QUERY ENGINE] No aggregate coverage yet for %v. Ensuring per-machine sketches.", lset)
-			ps.EnsureAggregateSketches(lset, funcName, queryDuration.Milliseconds(), 100000, 10000.0, machineIDLabel)
+			ps.EnsureAggregateSketches(lset, funcName, requestedPromRange.Milliseconds(), 100000, 10000.0, machineIDLabel)
 		} else {
 			log.Printf("[QUERY ENGINE] No sketch coverage available yet for %v. Creating instance.", lset)
-			ps.NewSketchCacheInstance(lset, funcName, queryDuration.Milliseconds(), 100000, 10000.0)
+			ps.NewSketchCacheInstance(lset, funcName, requestedPromRange.Milliseconds(), 100000, 10000.0)
 		}
 
 		c.JSON(http.StatusAccepted, gin.H{
@@ -952,16 +1033,15 @@ func handleParse(c *gin.Context) {
 
 	// Store the Prometheus window before evaluating the sketch
 	promMaxt := maxt
-	promMint := promMaxt - queryDuration.Milliseconds()
+	promMint := promMaxt - requestedPromRange.Milliseconds()
 
 	// Align sketch evaluation range with the Prometheus request.
 	mint = promMint
 	maxt = promMaxt
-	// DEBUG: Log PromSketch vs. Prometheus window adjustments
-	log.Printf("[DEBUG WINDOW] Prometheus requested window: mint=%d maxt=%d (duration=%d ms)", promMint, promMaxt, queryDuration.Milliseconds())
+	log.Printf("[DEBUG WINDOW] Prometheus requested window: mint=%d maxt=%d (duration=%d ms)", promMint, promMaxt, requestedPromRange.Milliseconds())
 	log.Printf("[DEBUG WINDOW] PromSketch final window:     mint=%d maxt=%d (duration=%d ms)", mint, maxt, maxt-mint)
-	// Track sample counts for both the Prometheus and PromSketch windows.
 
+	// Track sample counts for both the Prometheus and PromSketch windows.
 	var promCount float64 = math.NaN()
 	if aggregateAllMachines {
 		if cntVec, _ := ps.EvalAggregate("count_over_time", lset, 0.0, promMint, promMaxt, promMaxt, machineIDLabel); len(cntVec) > 0 && !math.IsNaN(cntVec[0].F) {
@@ -982,6 +1062,7 @@ func handleParse(c *gin.Context) {
 
 	// Log to console and CSV for later inspection.
 	debugWindowCounts(funcName, lset, promMint, promMaxt, mint, maxt, promCount, pskCount)
+
 	// Sanity-check the adjusted window boundaries.
 	if maxt <= mint {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -991,10 +1072,14 @@ func handleParse(c *gin.Context) {
 		return
 	}
 
-	curTime := maxt
+	// END STAGE 1: record prepare_time
+	prepareDur := time.Since(prepareStart).Seconds()
+	queryStageDuration.WithLabelValues("prepare_time", queryFuncLabel, aggLabel, "success").Observe(prepareDur)
 
+	curTime := maxt
 	log.Printf("[QUERY ENGINE] Final adjusted range: mint=%d maxt=%d", mint, maxt)
 
+	// === STAGE 2: INNER EVAL (ps.Eval / ps.EvalAggregate) ===
 	startEval := time.Now()
 	var vector promsketch.Vector
 	var annotations annotations.Annotations
@@ -1004,11 +1089,17 @@ func handleParse(c *gin.Context) {
 		vector, annotations = ps.Eval(funcName, lset, otherArgs, mint, maxt, curTime)
 	}
 
-	// Log each evaluation step for debugging.
 	evalLatency := time.Since(startEval)
 
-	// Logging server-side latency
+	// Eval-only latency metric (histogram khusus eval)
+	queryEvalDuration.WithLabelValues(queryFuncLabel, aggLabel, "success").Observe(evalLatency.Seconds())
+	// Breakdown ala Prometheus slice="inner_eval"
+	queryStageDuration.WithLabelValues("inner_eval", queryFuncLabel, aggLabel, "success").Observe(evalLatency.Seconds())
+
 	log.Printf("[QUERY ENGINE] ps.Eval latency: %s (%.2f ms)", evalLatency, float64(evalLatency.Microseconds())/1000.0)
+
+	// === STAGE 3: RESULT BUILDING / SORT / ENCODE ===
+	resultStart := time.Now()
 
 	results := []map[string]interface{}{}
 	resultMachineLabel := machineID
@@ -1036,6 +1127,7 @@ func handleParse(c *gin.Context) {
 			).Set(sample.F)
 		}
 	}
+
 	needsExecCount := funcName == "l1_over_time" || funcName == "l2_over_time" ||
 		funcName == "distinct_over_time" || funcName == "entropy_over_time"
 
@@ -1053,8 +1145,9 @@ func handleParse(c *gin.Context) {
 		debugExecSamples(funcName, lset, mint, maxt, curTime, execCount)
 	}
 
-	// Build the HTTP response payload.
 	log.Printf("[QUERY ENGINE] Evaluation successful. Returning %d data points.", len(results))
+	statusLabel = "success"
+
 	response := gin.H{
 		"status":           "success",
 		"data":             results,
@@ -1077,5 +1170,10 @@ func handleParse(c *gin.Context) {
 	respAnn["prometheus_sample_count"] = promCount
 	respAnn["promsketch_sample_count"] = pskCount
 
+	// Kirim response ke client
 	c.JSON(http.StatusOK, response)
+
+	// END STAGE 3: record result_sort / encode time
+	resultDur := time.Since(resultStart).Seconds()
+	queryStageDuration.WithLabelValues("result_sort", queryFuncLabel, aggLabel, statusLabel).Observe(resultDur)
 }
