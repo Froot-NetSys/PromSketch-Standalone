@@ -30,7 +30,7 @@ This repository contains the implementation of **PromSketch**, a sketch-based ti
   Handles ingestion, sketch storage, and PromQL query execution. Runs on **localhost:7000** by default.
 
 * **Custom Ingester**
-  Path: `ExporterStarter/custom_ingester_noDB_test3_dynamic.py`
+  Path: `ExporterStarter/custom_ingester.py`
   Forwards raw data into the PromSketch server through dynamically created multiport ingestion endpoints.
 
 * **Export Manager**
@@ -89,10 +89,10 @@ From the Prometheus build directory:
 ```bash
 cd ProsmketchServer/prometheus/
 
-./prometheus --config.file=documentation/examples/prometheus.yml
+./prometheus --config.file=documentation/examples/prometheus.yml   --enable-feature=remote-write-receiver --web.enable-lifecycle
 ```
 
-⚠️ Ensure that the `prometheus.yml` path points to the file rewritten by the server.
+Ensure that the `prometheus.yml` path points to the file rewritten by the server.
 
 ---
 
@@ -123,7 +123,7 @@ Queries such as `avg_over_time`, `entropy_over_time`, and `quantile_over_time` w
 You can benchmark ingestion and query execution as follows:
 
 1. **Ingestion Throughput Test**
-   Increase `--targets`, `--timeseries`, or `numClients` in `ExportManager.py` and `custom_ingester_noDB_test3_dynamic.py` to simulate high ingestion rates.
+   Increase `--targets`, `--timeseries`, or `numClients` in `ExportManager.py` and `custom_ingester.py` to simulate high ingestion rates.
 
 2. **Query Latency Test**
    Use `promtools.py` to measure query response times while ingestion load is active.

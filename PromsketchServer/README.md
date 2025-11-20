@@ -54,7 +54,7 @@ scrape_configs:
 ### C) Run the ingester (Python)
 
 ```bash
-python custom_ingester_noDB_test3_dynamic.py --config num_samples_config.yml
+python custom_ingester.py --config num_samples_config.yml
 ```
 
 Workflow:
@@ -178,7 +178,7 @@ Example **rules** file for batch queries (optional): `promsketch-rules.yml` also
 * **Cost model**: `INSERT_COST_PER_MILLION`, `QUERY_COST_PER_MILLION`, `STORAGE_COST_PER_GB_HOUR`, `ASSUMED_BYTES_PER_SAMPLE`.
 * **Counters feeding the cost panel**: from Prometheus (e.g., `prometheus_tsdb_head_samples_appended_total`, `prometheus_engine_query_samples_total`) and from PromSketch (e.g., total ingested & `sketch_query_samples_total`).
 
-### b) Ingester — `custom_ingester_noDB_test3_dynamic.py`
+### b) Ingester — `custom_ingester.py`
 
 * **Routing**: `PROMSKETCH_BASE_PORT` (default 7100), `MACHINES_PER_PORT` (default 200), `PORT_BLOCKLIST={7000}` (control port must never receive ingest).
 * **Targets & intervals**: defined in `num_samples_config.yml` → `targets` and `scrape_interval` (`ms/s/m/h`).

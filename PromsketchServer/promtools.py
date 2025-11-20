@@ -290,7 +290,7 @@ def main():
                 continue
             print(f"\n=== Running Rule: {name} ===")
             run_query(query)
-        time.sleep(60)  # update every 5 seconds
+        time.sleep(30)  # update every 60 seconds
 
 if __name__ == "__main__":
     main()
