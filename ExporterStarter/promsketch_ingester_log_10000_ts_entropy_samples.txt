@@ -1,1 +1,0 @@
-/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/.venv/bin/python3: can't open file '/mnt/78D8516BD8512920/GARUDA_ACE/FROOT-LAB/promsketch-standalone/ExporterStarter/custom_ingester_noDB.py': [Errno 2] No such file or directory
