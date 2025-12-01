@@ -6,6 +6,9 @@ This repository provides a standalone PromSketch version, which scrapes samples 
 
 1. Create and activate a Python virtual environment, then install the required dependencies.
    ```bash
+   sudo apt update
+   sudo apt install tshark # For converting CAIDA pcap traces
+
    python3 -m venv .venv
    source .venv/bin/activate
 
@@ -144,6 +147,7 @@ You can benchmark ingestion and query execution as follows:
 * **Main server (7000)** is responsible for sketch aggregation and query execution. It must be active for queries to run.
 
 ---
+
 
 
 
