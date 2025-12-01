@@ -14,8 +14,13 @@ This repository provides a standalone PromSketch version, which scrapes samples 
    pip install pyyaml
    pip install requests
    pip install aiohttp
+   pip install pyshark
    ```
 2. Download the CAIDA dataset and use `ExporterStarter/datasets/pcap_process.py` to convert it into `.txt` format.
+   ```bash
+   sudo apt update
+   sudo apt install tshark # For converting CAIDA pcap traces
+   ```
 
 ## PromSketch Standalone Server – Setup and Testing Guide
 
@@ -26,7 +31,7 @@ This repository contains the implementation of standalone **PromSketch**, a sket
 ### Components
 
 * **Main Server**
-  Path: `ProsmketchServer/main.go`
+  Path: `PromsketchServer/main.go`
   Handles ingestion, sketch storage, and PromQL query execution. Runs on **localhost:7000** by default.
 
 * **Custom Ingester**
@@ -60,6 +65,10 @@ python3 ExportManager.py \
   --max_windowsize=100000 \
   --querytype=entropy \
   --waiteval=60
+```
+
+```bash
+cd ExporterStarter/
 
 # Start Custom Ingester
 python3 custom_ingester.py --config=num_samples_config.yml
@@ -69,10 +78,10 @@ python3 custom_ingester.py --config=num_samples_config.yml
 
 #### 2. Launch the Main PromSketch Server
 
-From `ProsmketchServer/`, run:
+From `PromsketchServer/`, run:
 
 ```bash
-cd ProsmketchServer/
+cd PromsketchServer/
 
 MAX_INGEST_GOROUTINES=n go run .
 ```
@@ -87,7 +96,7 @@ MAX_INGEST_GOROUTINES=n go run .
 From the Prometheus build directory:
 
 ```bash
-cd ProsmketchServer/prometheus/
+cd PromsketchServer/prometheus/
 
 ./prometheus --config.file=documentation/examples/prometheus.yml   --enable-feature=remote-write-receiver --web.enable-lifecycle
 ```
@@ -98,10 +107,10 @@ Ensure that the `prometheus.yml` path points to the file rewritten by the server
 
 #### 4. Run PromTools for Query Testing
 
-Run PromTools from `ProsmketchServer/` to continuously send PromQL queries:
+Run PromTools from `PromsketchServer/` to continuously send PromQL queries:
 
 ```bash
-cd ProsmketchServer/
+cd PromsketchServer/
 
 python3 promtools.py
 ```
@@ -143,6 +152,14 @@ You can benchmark ingestion and query execution as follows:
 * **Main server (7000)** is responsible for sketch aggregation and query execution. It must be active for queries to run.
 
 ---
+
+
+
+
+
+
+
+
 
 
 
