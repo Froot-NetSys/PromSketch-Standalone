@@ -78,10 +78,10 @@ python3 custom_ingester.py --config=num_samples_config.yml
 
 #### 2. Launch the Main PromSketch Server
 
-From `ProsmketchServer/`, run:
+From `PromsketchServer/`, run:
 
 ```bash
-cd ProsmketchServer/
+cd PromsketchServer/
 
 MAX_INGEST_GOROUTINES=n go run .
 ```
@@ -152,6 +152,7 @@ You can benchmark ingestion and query execution as follows:
 * **Main server (7000)** is responsible for sketch aggregation and query execution. It must be active for queries to run.
 
 ---
+
 
 
 
