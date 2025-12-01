@@ -1,0 +1,9 @@
+[submodule "PromsketchServer/external/prometheus-extended"]
+	path = PromsketchServer/external/prometheus-extended
+	url = https://github.com/zzylol/prometheus-sketch-VLDB.git
+[submodule "PromsketchServer/PromsketchServer/external/prometheus-sketch-VLDB"]
+	path = PromsketchServer/PromsketchServer/external/prometheus-sketch-VLDB
+	url = https://github.com/zzylol/prometheus-sketch-VLDB.git
+[submodule "PromsketchServer/external/prometheus-sketch-VLDB"]
+	path = PromsketchServer/external/prometheus-sketch-VLDB
+	url = https://github.com/zzylol/prometheus-sketch-VLDB.git
