@@ -182,12 +182,24 @@ Queries such as `avg_over_time`, `entropy_over_time`, and `quantile_over_time` w
 
 ---
 
+#### 5. Run the Streamlit demo (optional UI)
+
+From `PromsketchServer/demo/`, start the live dashboard:
+
+```bash
+cd PromsketchServer/demo
+streamlit run demo.py
+```
+
+You’ll see live latency charts (Prometheus vs PromSketch), per-expression metric values, and a cost panel fed by Prometheus & PromSketch counters.
+
+---
+
 #### 5. Visualize with Grafana
 
 * Connect Grafana to your Prometheus instance.
 * Create dashboards and panels to display ingested metrics and query outputs.
 * Enable **auto-refresh** for live visualization.
-* Streamlit demo (`streamlit run demo.py`) shows live latency, metric values per expression, and a cost panel sourced from Prometheus & PromSketch counters; see `PromsketchServer/README.md` for the demo breakdown.
 
 ---
 

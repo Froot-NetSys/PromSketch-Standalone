@@ -106,9 +106,18 @@ Example **rules** file for batch queries (optional): `promsketch-rules.yml` also
 
 ---
 
-## 5) Appendix
+## 5) Prometheus configs & rules
 
-### Example `promsketch-rules.yml`
+* `prometheus-config/prometheus.yml`: baseline Prometheus scrape config used alongside PromSketch. It includes jobs for the main server (`:7000`) and partition RAW endpoints (`promsketch_raw_groups`), plus references to the rule files below. The Go server can rewrite this file via `UpdatePrometheusYML` to inject active 71xx ports.
+* `prometheus-config/promsketch-latency.yml`: rule group that records quantiles (p50/p90/p99) over `promsketch_engine_query_duration_seconds` buckets, useful for query latency dashboards.
+* `prometheus-config/prometheus-rules.yml`: general Prometheus alert/rule set shipped with this repo; keep it alongside `prometheus.yml` when starting Prometheus.
+* `promsketch-rules.yml` (root of `PromsketchServer/`): example batch queries targeting PromSketch-specific functions; you can load or adapt it for your tests.
+
+---
+
+## 6) Appendix
+
+### Example `promsketch-rules.yml` (PromsketchServer/promsketch-rules.yml)
 
 ```yaml
 rules:
