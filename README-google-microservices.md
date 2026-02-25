@@ -218,7 +218,7 @@ Create `docker-compose.yml`:
 ```yaml
 services:
   kafka:
-    image: bitnami/kafka:3.7
+    image: soldevelo/kafka:4.2
     container_name: kafka-single
     restart: unless-stopped
     ports:
